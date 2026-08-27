@@ -1,0 +1,30 @@
+# Figma working downloads — hundreds of MB, regenerable via the Figma MCP
+figma-raw/
+figma-logos/
+
+# Intermediate/source assets. The finished, optimised versions live in site/img/
+assets-src/
+
+# Large source exports and reference media
+Final Laptop (1).png
+Final Mobile (2).png
+*.mp4
+!site/img/*.mp4
+
+# Loose original photo exports (superseded by site/img/*.webp)
+2man reading.png
+Mobile.png
+handshake.png
+scene photo.png
+turtle.png
+typing machine 4.png
+انقاذ العراق.png
+انقاذ العراق (no-ring).png
+
+# Build output and stale copies
+teo-vision-site.zip
+teo-vision.backup.html
+
+# OS noise
+Thumbs.db
+.DS_Store

@@ -1,0 +1,11 @@
+[build]
+  # Nothing to compile — the site is plain HTML/CSS/JS.
+  # Only the contents of `site/` are published; the Figma exports and
+  # working files in the project root stay out of the deploy.
+  publish = "site"
+
+[[redirects]]
+  from = "/teo-vision.html"
+  to = "/"
+  status = 301
+  force = true
