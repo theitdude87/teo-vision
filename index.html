@@ -214,7 +214,9 @@
   .nav__logo { width: 104px; height: 39px; flex-shrink: 0; }
   .nav__logo img { width: 104px; height: 39px; object-fit: contain; }
 
-  /* Desktop inline links are hidden by default (mobile-first design) */
+  /* Desktop bar (pill + links + CTA) is hidden on the phone */
+  .nav__bar { display: none; }
+  .nav__cta { display: none; }
   .nav__links {
     display: none;
     list-style: none;   /* without this the desktop nav shows bullet dots */
@@ -790,6 +792,53 @@
   .socials__link:focus-visible svg { background: var(--color-accent-blue); }
 
   /* ============================================================
+     CONTACT REACH BLOCKS  ( الموقع / الهاتف / البريد )
+     Bordered 48px icon boxes beside a label + value, per the artboard.
+     ============================================================ */
+  .contact__reach { width: 100%; display: flex; flex-direction: column; gap: 16px; }
+  .contact__reach-title,
+  .contact__follow-title {
+    margin: 0;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--fs-subtitle);
+    color: var(--color-text-lighter);
+    text-align: right;
+  }
+  .contact__follow-title { text-align: center; width: 100%; margin-top: 8px; }
+  .contact__items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .contact-item { display: flex; align-items: center; gap: 12px; }
+  .contact-item__icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border: 1px solid var(--color-accent-blue);
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-blue);
+  }
+  .contact-item__icon svg { width: 24px; height: 24px; display: block; }
+  .contact-item__text { display: flex; flex-direction: column; gap: 4px; text-align: right; }
+  .contact-item__label {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--fs-body-lg);
+    color: var(--color-text-light);
+  }
+  .contact-item__value {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--fs-body-lg);
+    color: var(--color-muted);
+  }
+
+  /* ============================================================
      RESPONSIVE  —  Tablet (<=1024) and Mobile (<=768)
      The Figma source is a 360px mobile artboard, so the column
      stays fixed; the navigation adapts per the brief.
@@ -925,18 +974,75 @@
       gap: 24px;
       top: 12px;
     }
-    .nav__logo { order: -1; width: 132px; height: auto; }
-    .nav__logo img { width: 132px; height: auto; }
-    .nav__links {
-      flex: 1 1 auto;
-      height: 66px;
-      background: var(--color-primary);
-      border-radius: 33px;
-      padding: 0 34px;
-      gap: 36px;
+    .nav__logo { order: -1; width: 150px; height: 56px; }
+    .nav__logo img { width: 150px; height: 56px; }
+
+    /* Top bar: #1e3e79 pill, 36/16 padding, radius 24 — from the artboard */
+    .nav__bar {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
+      flex: 1 1 auto;
+      max-width: 1111px;
+      background: var(--color-primary);
+      border-radius: 24px;
+      padding: 16px 36px;
     }
-    .nav__links a { font-size: 15px; color: #eef2f8; }
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      padding: 0 16px;
+      min-width: 144px;
+      background: var(--color-send);
+      border: 1px solid var(--color-btn-border);
+      border-radius: 22px;
+      color: #ffffff;
+      font-family: var(--font-button);
+      font-weight: 700;
+      font-size: 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      order: 2;                    /* RTL: pushes the CTA to the pill's left */
+      transition: background 0.2s ease;
+    }
+    .nav__cta:hover,
+    .nav__cta:focus-visible { background: var(--color-accent-blue); }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: clamp(32px, 6.2vw, 89px);
+      flex: 1 1 auto;
+      background: none;
+      padding: 0;
+      height: auto;
+    }
+    .nav__links a {
+      font-family: var(--font-button);
+      font-weight: 700;
+      font-size: 18px;
+      color: #ebf1f7;
+      white-space: nowrap;
+    }
+    /* active item carries a 48x4 underline in the artboard */
+    .nav__links a.is-active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-family: var(--font-display);
+    }
+    .nav__links a.is-active::after {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 4px;
+      border-radius: 2px;
+      background: #eaf3ff;
+    }
     .theme-toggle { order: 2; width: 44px; height: 44px; }
     .theme-toggle svg { width: 21px; height: 21px; }
 
@@ -1026,10 +1132,20 @@
     .ads__banner { width: 100%; font-size: 24px; padding: 16px 24px; margin: 10px 0 26px; }
 
     /* ---- CONTACT ---- */
-    .contact { width: 100%; max-width: 980px; padding-top: 96px; }
-    .field__input { height: 52px; }
-    .field__textarea { min-height: 220px; }
-    .btn-send { width: 260px; align-self: flex-start; height: 52px; }
+    .contact { width: 100%; max-width: 1312px; padding-top: 96px; gap: 24px; }
+    .contact__row { gap: 24px; }
+    .field { width: auto; flex: 1 1 0; }
+    .field__input { font-size: 22px; padding: 0 20px; }
+    .field__label { font-size: 34px; }
+    .field__input { height: 73px; border-radius: 12px; }
+    .field__textarea { min-height: 518px; border-radius: 12px; padding: 24px; font-size: 34px; }
+    .field__textarea::placeholder { font-size: 34px; }
+    .btn-send { width: 300px; align-self: flex-start; height: 64px; font-size: 22px; }
+    .contact__reach-title, .contact__follow-title { font-size: 34px; }
+    .contact__items { flex-direction: row; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .contact-item { gap: 24px; }
+    .contact-item__label, .contact-item__value { font-size: 30px; }
+    .contact-item__text { gap: 12px; }
     .contact__logo img { width: 132px; height: auto; }
     .socials__link { width: 52px; height: 52px; }
     .socials__link img,
@@ -1247,14 +1363,16 @@
         </button>
 
         <!-- Desktop inline links (>1024) -->
-        <ul class="nav__links">
-          <li><a href="#hero">من نحن</a></li>
-          <li><a href="#clients">عملاؤنا</a></li>
-          <li><a href="#services">خدماتنا</a></li>
-          <li><a href="#behind">الكواليس</a></li>
-          <li><a href="#content">المحتوى</a></li>
-          <li><a href="#contact">التواصل</a></li>
-        </ul>
+        <div class="nav__bar">
+          <a class="nav__cta" href="#contact">ابدأ مشروعك</a>
+          <ul class="nav__links">
+            <li><a class="is-active" href="#hero">الرئيسية</a></li>
+            <li><a href="#services">خدماتنا</a></li>
+            <li><a href="#works">أعمالنا</a></li>
+            <li><a href="#clients">عملاؤنا</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+          </ul>
+        </div>
 
         <div class="nav__logo">
           <img src="img/logo.webp" alt="Teo Vision" />
@@ -1263,12 +1381,11 @@
         <!-- Collapsible menu (<=1024) -->
         <div class="nav__menu" id="navMenu">
           <ul class="nav__menu-list">
-            <li><a class="nav__menu-link" href="#hero">من نحن</a></li>
-            <li><a class="nav__menu-link" href="#clients">عملاؤنا</a></li>
+            <li><a class="nav__menu-link" href="#hero">الرئيسية</a></li>
             <li><a class="nav__menu-link" href="#services">خدماتنا</a></li>
-            <li><a class="nav__menu-link" href="#behind">الكواليس</a></li>
-            <li><a class="nav__menu-link" href="#content">المحتوى</a></li>
-            <li><a class="nav__menu-link" href="#contact">التواصل</a></li>
+            <li><a class="nav__menu-link" href="#works">أعمالنا</a></li>
+            <li><a class="nav__menu-link" href="#clients">عملاؤنا</a></li>
+            <li><a class="nav__menu-link" href="#contact">تواصل معنا</a></li>
           </ul>
         </div>
       </nav>
@@ -1545,7 +1662,7 @@
     </section>
 
     <!-- ========================== SAVE IRAQ / CASE STUDY ========================== -->
-    <section class="story section" aria-label="موقعنا">
+    <section class="story section" id="works" aria-label="موقعنا">
       <div class="story__head story__head--tight">
         <h2 class="heading heading--xl">موقعنا</h2>
         <p class="subtitle">لكل قصة نجاح نقطــة انطـــلاق... وهـــذه هي نقطتنــــا</p>
@@ -1576,7 +1693,7 @@
         </div>
 
         <div class="field field--full">
-          <label class="field__label" for="message">اكتب الرسالة</label>
+          <label class="field__label" for="message">موضوع الرسالة</label>
           <textarea class="field__textarea" id="message" dir="rtl" placeholder="الرسالة"></textarea>
         </div>
 
@@ -1599,11 +1716,34 @@
         <p class="contact__tagline">Production House &amp; Marketing Agency</p>
       </div>
 
-      <address class="contact__info" style="font-style: normal;">
-        <p class="city">بغداد-المنصور</p>
-        <p class="line" dir="ltr">+964 7748663366</p>
-        <p class="line" dir="ltr">teo.vision.iq@gmail.com</p>
-      </address>
+      <div class="contact__reach">
+        <h3 class="contact__reach-title">تواصل معنا</h3>
+        <div class="contact__items">
+          <div class="contact-item">
+            <span class="contact-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+            <div class="contact-item__text">
+              <p class="contact-item__label">الموقع</p>
+              <p class="contact-item__value">بغداد-المنصور</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6.3 3.5h3l1.6 4-2 1.4a13 13 0 0 0 6.2 6.2l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.3 5.7a2 2 0 0 1 2-2.2Z"/></svg></span>
+            <div class="contact-item__text">
+              <p class="contact-item__label">الهاتف</p>
+              <p class="contact-item__value" dir="ltr">+964 7748663366</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m3.8 7 8.2 6 8.2-6"/></svg></span>
+            <div class="contact-item__text">
+              <p class="contact-item__label">البريد الالكتروني</p>
+              <p class="contact-item__value" dir="ltr">teo.vision.iq@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="contact__follow-title">تابعنا عبر</h3>
 
       <div class="socials" aria-label="روابط التواصل الاجتماعي">
         <a class="socials__link" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.2 22v-7.6h2.6l.4-3h-3V9.5c0-.87.24-1.46 1.5-1.46h1.6V5.36A21 21 0 0 0 14 5.22c-2.3 0-3.87 1.4-3.87 3.98v2.2H7.5v3h2.63V22h3.07Z"/></svg></a>
