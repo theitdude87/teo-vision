@@ -576,7 +576,7 @@
     text-align: right;      /* the artboard right-aligns these, not centred */
   }
   .service-chip__label {
-    font-family: var(--font-body);
+    font-family: var(--font-display);   /* artboard: Zain Bold */
     font-weight: 700;
     /* The artboard sets these at ~13px in Ping AR + LT. That font is not
        available here and the Tajawal fallback runs wider, so at 13-14px the
@@ -905,10 +905,10 @@
     :root {
       --frame-width: 100%;
       --content-width: 100%;
-      --fs-display-xl: 92px;
-      --fs-display-lg: 72px;
+      --fs-display-xl: 140px;   /* artboard Display/Headline1 */
+      --fs-display-lg: 115px;
       --fs-hero-title: 85px;   /* artboard Display/Headlin2 */
-      --fs-subtitle: 22px;
+      --fs-subtitle: 34px;      /* artboard Body/Body 1 */
       --fs-caption-lg: 26px;
       --fs-vision-label: 78px;  /* artboard Display/Headline3 */
     }
@@ -989,32 +989,31 @@
     .story { padding-top: 86px; }
     .story__head { gap: 20px; }
     .story__title-group { gap: 22px; }
-    .body-text, .story__caption .body-text { font-size: 16px; line-height: 1.9; max-width: 980px; }
+    .body-text, .story__caption .body-text { font-size: 30px; line-height: 1.45; max-width: 1312px; }   /* artboard Body/Body 2 */
     .story__media,
     .story__media[style] { width: 100% !important; max-width: 1180px; margin-top: 18px; }
-    .story__caption { width: 100%; max-width: 980px; margin-top: 30px; gap: 20px; }
+    .story__caption { width: 100%; max-width: 1312px; margin-top: 36px; gap: 24px; }
 
     /* ---- SERVICES: department grid on the right, typewriter left ---- */
-    .services__title { margin-bottom: 42px; text-align: right; width: 100%; }
+    .services__title { margin-bottom: 36px; text-align: right; width: 100%; white-space: nowrap; }
     .services__grid {
       width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 364px;
-      column-gap: 56px;
-      row-gap: 46px;
+      grid-template-columns: minmax(0, 1fr) 394px;
+      column-gap: 40px;
+      row-gap: 36px;
       align-items: start;
     }
-    .services__row { grid-column: 1; gap: 26px; }
+    .services__row { grid-column: 1; gap: 28px; grid-template-columns: repeat(4, 182px); justify-content: end; }
     .services__media {
       grid-column: 2;
       grid-row: 1 / span 3;
-      width: 340px;
-      margin-inline-start: 24px;   /* room for the ring, which overhangs */
+      width: 394px;                /* artboard: typing machine 4 */
       align-self: center;
     }
-    .service-chip { gap: 10px; }
-    .service-chip__label { font-size: 22px; }
-    .service-chip__desc { font-size: 13px; line-height: 1.8; }
+    .service-chip { gap: 8px; }
+    .service-chip__label { font-size: 26px; }
+    .service-chip__desc { font-size: 16px; line-height: 1.55; }
 
     /* ---- CONTACT CALL-OUT ----
        The ring is a percentage of its own box, so the box has to track the
