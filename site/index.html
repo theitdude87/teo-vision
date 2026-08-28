@@ -596,20 +596,14 @@
   .service-chip__label {
     font-family: var(--font-display);   /* artboard: Zain Bold */
     font-weight: 700;
-    /* The artboard sets these at ~13px in Ping AR + LT. That font is not
-       available here and the Tajawal fallback runs wider, so at 13-14px the
-       longer names ("العلاقات العامة") wrap to two lines where the artboard
-       keeps every one on a single line. 10.5px is the largest that still fits
-       the 76px column in Tajawal. Licensing Ping AR + LT would let this go
-       back up to the artboard's own size. */
-    font-size: 10.5px;
+    font-size: 10px;                  /* artboard mobile: Zain Bold 10px */
     color: var(--color-accent-mid);   /* #5072b0, straight from the artboard */
     line-height: 1.35;
   }
   .service-chip__desc {
     font-family: var(--font-body);
     font-weight: 300;
-    font-size: var(--fs-tiny-9);
+    font-size: 7px;                   /* artboard mobile: Ping AR + LT Light 7px */
     color: var(--color-muted);
     line-height: normal;
   }
@@ -909,6 +903,7 @@
     /* Full-bleed on a phone, but capped so a tablet does not blow the
        360px artboard up to the full window width. */
     .page { width: 100%; max-width: 560px; }
+    .heading--ads { font-size: 48px; }   /* artboard mobile: الإعلانات is 48, not 50 */
     .hero,
     .hero__image,
     .story__media,
@@ -1655,7 +1650,7 @@
     <!-- ========================== ADS ( الإعلانات ) ========================== -->
     <section class="story section" id="ads" aria-label="الإعلانات">
       <div class="story__head story__head--tight">
-        <h2 class="heading heading--lg">الإعـلانات</h2>
+        <h2 class="heading heading--lg heading--ads">الإعـلانات</h2>
         <p class="subtitle">رحـلة بطيـئة.. ولكنها تـصنع الأثـــر</p>
         <p class="body-text" dir="rtl">مثل السلحفاة لا يعتمد على السرعة وحدها، بل على الثبات والذكاء في اختيــار الطريــــــق. قد لا تكون الأسرع في البدايــة لكنها تعـرف كـيف تصل إلى هدفها بثقـة وتتجـاوز من يـركض بلا اتــجاه. وهكذا هو الإعلان الذكي؛ لا يـطارد النتائج السريعة، بـل يُبنى على اسـتراتيجية واضـــــحة، ورســالة مــدروسـة وفهـم عـميق للجمهور، يتحرك في الوقت المناسب ويصل إلى المكانالصحيح،ليصنع أثراً يبقى في الذاكرة ويحول الانتباه إلى ولاء والمشاهدات إلى نتائج حقيقية.</p>
       </div>
