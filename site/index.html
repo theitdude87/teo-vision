@@ -233,12 +233,14 @@
     background: var(--color-background);
     border-radius: 16px;
     overflow: hidden;
+    /* artboard: ON_CLICK -> MOVE_IN, 300ms, ease-out */
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.35s ease, opacity 0.35s ease;
+    transform: translateY(-12px);
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
   }
-  .nav__menu.is-open { max-height: 340px; opacity: 1; }
+  .nav__menu.is-open { max-height: 340px; opacity: 1; transform: translateY(0); }
 
   .nav__menu-list { list-style: none; margin: 0; padding: 8px 0; }
   .nav__menu-link {
@@ -483,8 +485,9 @@
     width: max-content;
     will-change: transform;
   }
-  .marquee__row--rtl .marquee__track { animation: marquee-rtl 60s linear infinite; }
-  .marquee__row--ltr .marquee__track { animation: marquee-ltr 60s linear infinite; }
+  /* artboard: row one 10s, row two 8s, both linear */
+  .marquee__row--rtl .marquee__track { animation: marquee-rtl 8s linear infinite; }
+  .marquee__row--ltr .marquee__track { animation: marquee-ltr 10s linear infinite; }
 
   .marquee__logo {
     /* max-height, never height: these are 1x assets, so forcing a uniform
@@ -614,6 +617,22 @@
     overflow: hidden;
   }
   .ads img { width: 100%; height: auto; }
+
+  /* The artboard attaches MOUSE_ENTER -> SMART_ANIMATE, 300ms, ease-out to the
+     turtle (الإعلانات) and the two men (المحتوى). */
+  .ads img,
+  .story__media--hover img {
+    transition: transform 0.3s ease-out, filter 0.3s ease-out;
+  }
+  .ads:hover img,
+  .story__media--hover:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.08);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ads img, .story__media--hover img { transition: none; }
+    .ads:hover img, .story__media--hover:hover img { transform: none; filter: none; }
+  }
   .ads__banner {
     width: var(--frame-width);
     background: var(--color-vision-panel);
@@ -1216,11 +1235,24 @@
     height: 100%;
     fill: var(--ring-color);
     fill-opacity: calc(var(--ring-opacity, 0.3) * var(--ring-mul, 1));
-    animation: ring-spin var(--ring-speed, 90s) linear infinite;
+    /* The artboard drives these as a prototype loop: hold 800ms, then a
+       300ms ease-out step of 45deg (variants Property 1 = 1/2/3, opacity 30%).
+       Eight steps make a full turn, so one revolution is 8.8s. Figma has to
+       snap back after three variants because a variant loop is finite; we
+       carry on forward instead, which keeps the designed rhythm without the
+       reverse jump. */
+    animation: ring-tick 8.8s ease-out infinite;
   }
-  @keyframes ring-spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  @keyframes ring-tick {
+    0.0000%, 9.0909% { transform: rotate(0deg); }
+    12.5000%, 21.5909% { transform: rotate(45deg); }
+    25.0000%, 34.0909% { transform: rotate(90deg); }
+    37.5000%, 46.5909% { transform: rotate(135deg); }
+    50.0000%, 59.0909% { transform: rotate(180deg); }
+    62.5000%, 71.5909% { transform: rotate(225deg); }
+    75.0000%, 84.0909% { transform: rotate(270deg); }
+    87.5000%, 96.5909% { transform: rotate(315deg); }
+    100% { transform: rotate(360deg); }
   }
   @media (prefers-reduced-motion: reduce) {
     .ring > svg { animation: none; }
@@ -1526,7 +1558,7 @@
 
       <div class="story__media media">
         <span class="ring" aria-hidden="true"
-              style="--ring-x:49.97%;--ring-y:56.71%;--ring-d:51.80%;--ring-speed:90s;">
+              style="--ring-x:49.97%;--ring-y:56.71%;--ring-d:51.80%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
         <img src="img/handshake.webp"
@@ -1552,7 +1584,7 @@
 
         <div class="services__media media">
         <span class="ring" aria-hidden="true"
-              style="--ring-x:48.60%;--ring-y:56.09%;--ring-d:97.99%;--ring-speed:60s;">
+              style="--ring-x:48.60%;--ring-y:56.09%;--ring-d:97.99%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
         <img src="img/typewriter.webp"
@@ -1584,7 +1616,7 @@
 
       <div class="story__media media" style="width:360px;">
         <span class="ring" aria-hidden="true"
-              style="--ring-x:53.60%;--ring-y:52.48%;--ring-d:51.97%;--ring-speed:95s;">
+              style="--ring-x:53.60%;--ring-y:52.48%;--ring-d:51.97%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
         <img src="img/clapperboard.webp"
@@ -1607,7 +1639,7 @@
 
       <div class="ads media">
         <span class="ring" aria-hidden="true"
-              style="--ring-x:50%;--ring-y:44%;--ring-d:78%;--ring-speed:115s;">
+              style="--ring-x:50%;--ring-y:44%;--ring-d:78%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
         <img src="img/turtle.webp" alt="سلحفاة على لوح تزلج — الطريق إلى التأثير سباق رؤية" />
@@ -1627,9 +1659,9 @@
         <p class="body-text" dir="rtl">ينقل التجسيد البصري عبر التحريك، التصوير، المونتاج، والكتابة الإبداعية رسالة العلامة التجارية، فنصنع محتوى يجمع بين القصة والهدف ليصل إلى الجمهور بوضوح وتأثير.</p>
       </div>
 
-      <div class="story__media media" style="width:360px;">
+      <div class="story__media media story__media--hover" style="width:360px;">
         <span class="ring" aria-hidden="true"
-              style="--ring-x:50%;--ring-y:48%;--ring-d:62%;--ring-speed:105s;">
+              style="--ring-x:50%;--ring-y:48%;--ring-d:62%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
         <img src="img/two-men-reading.webp" alt="رجلان يقرآن على مقعد حجري" />
@@ -1654,7 +1686,7 @@
 
       <div class="call__media media">
         <span class="ring" aria-hidden="true"
-              style="--ring-x:50.73%;--ring-y:45.83%;--ring-d:76.15%;--ring-speed:70s;">
+              style="--ring-x:50.73%;--ring-y:45.83%;--ring-d:76.15%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
         <img src="img/rotary-phone.webp" alt="هاتف قديم بقرص دوّار — ابدأ التواصل" />
@@ -1670,7 +1702,7 @@
 
       <div class="story__media media" style="width:362px;">
         <span class="ring" aria-hidden="true"
-              style="--ring-x:51.36%;--ring-y:37.89%;--ring-d:60.15%;--ring-speed:110s;">
+              style="--ring-x:51.36%;--ring-y:37.89%;--ring-d:60.15%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
         <img src="img/save-iraq.webp"
