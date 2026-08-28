@@ -493,14 +493,23 @@
   .marquee__track {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: var(--mq-gap, 16px);
     flex-shrink: 0;
     width: max-content;
     will-change: transform;
   }
-  /* artboard: row one 10s, row two 8s, both linear */
-  .marquee__row--rtl .marquee__track { animation: marquee-rtl 8s linear infinite; }
-  .marquee__row--ltr .marquee__track { animation: marquee-ltr 10s linear infinite; }
+  /* One repeating unit. The script clones it until the row is more than full,
+     then shifts by exactly one unit + one gap — so the loop has no seam and no
+     blank can ever scroll into view. Duration is derived from the unit width,
+     which keeps the speed constant whatever the logos measure. */
+  .marquee__set {
+    display: flex;
+    align-items: center;
+    gap: var(--mq-gap, 16px);
+    flex-shrink: 0;
+  }
+  .marquee__row--rtl .marquee__track { animation: marquee-a 40s linear infinite; }
+  .marquee__row--ltr .marquee__track { animation: marquee-b 40s linear infinite; }
 
   .marquee__logo {
     /* max-height, never height: these are 1x assets, so forcing a uniform
@@ -513,12 +522,12 @@
     filter: none;
   }
 
-  @keyframes marquee-rtl {
+  @keyframes marquee-a {
     from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    to   { transform: translateX(calc(-1 * var(--mq-shift, 50%))); }
   }
-  @keyframes marquee-ltr {
-    from { transform: translateX(-50%); }
+  @keyframes marquee-b {
+    from { transform: translateX(calc(-1 * var(--mq-shift, 50%))); }
     to   { transform: translateX(0); }
   }
 
@@ -1129,7 +1138,7 @@
     /* ---- MARQUEE ---- */
     .marquee { padding: 12px 28px; margin-top: 26px; }
     .marquee__row { height: 92px; }
-    .marquee__track { gap: 46px; }
+    .marquee__track, .marquee__set { --mq-gap: 46px; }
     .marquee__logo { max-height: 56px; }
 
     /* ---- STORY SECTIONS ---- */
@@ -1898,6 +1907,41 @@
         label();
       });
     }
+  })();
+
+  /* ---- Logo marquee: fill the row, then loop with no seam ---- */
+  (function () {
+    var SPEED = 45;   /* pixels per second — steady, readable */
+    function build() {
+      document.querySelectorAll('.marquee__track').forEach(function (track) {
+        var row = track.parentElement;
+        if (!track.querySelector('.marquee__set')) {
+          var set = document.createElement('div');
+          set.className = 'marquee__set';
+          while (track.firstChild) set.appendChild(track.firstChild);
+          /* the markup shipped a duplicate pass; the clones below replace it */
+          set.querySelectorAll('[aria-hidden="true"]').forEach(function (n) { n.remove(); });
+          track.appendChild(set);
+        }
+        var set0 = track.querySelector('.marquee__set');
+        var w = set0.getBoundingClientRect().width;
+        if (!w) return;
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        /* enough copies that the row is always covered, even mid-shift */
+        var need = Math.ceil((row.clientWidth + w) / (w + gap)) + 1;
+        while (track.children.length < Math.max(2, need)) {
+          var c = set0.cloneNode(true);
+          c.setAttribute('aria-hidden', 'true');
+          track.appendChild(c);
+        }
+        track.style.setProperty('--mq-shift', (w + gap) + 'px');
+        track.style.animationDuration = ((w + gap) / SPEED).toFixed(2) + 's';
+      });
+    }
+    if (document.readyState === 'complete') build();
+    else window.addEventListener('load', build);
+    var t;
+    window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(build, 200); });
   })();
 </script>
 </body>
