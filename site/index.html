@@ -564,6 +564,14 @@
   }
   .story__media img { width: 100%; height: auto; }
 
+  /* Artboard photo boxes. The artwork is centred inside, not stretched —
+     the ring percentages are relative to these, so the box drives placement. */
+  .media--box { display: flex; align-items: center; justify-content: center; }
+  .media--box > img { width: 100%; height: 100%; object-fit: contain; }
+  .media--handshake { aspect-ratio: 360 / 351; }
+  .media--monument  { aspect-ratio: 360 / 437; }
+  .media--phone     { aspect-ratio: 358 / 386; }
+
   .story__caption {
     width: var(--content-width);
     margin: 16px auto 0;
@@ -573,6 +581,9 @@
     gap: 16px;
     text-align: center;
   }
+  /* the artboard mutes this one subtitle only */
+  .subtitle--muted { color: var(--color-muted); }
+
   .caption-accent {
     font-family: var(--font-body);
     font-size: var(--fs-caption-lg);
@@ -1590,7 +1601,7 @@
         <p class="body-text" dir="rtl">فالمصافحة ليست مجرد لقاء بين يدين، بل وعد بالتعاون، والتزام بتحقيق الأهداف، وإيمان برحلة نجاح مشتركة. في TEO Vision Agency، لا ننظر إلى عملائنا كأرقام أو مشاريع مؤقتة،بل كشركاء في قصة نجاح نبنيها معاً. نستمع إلى رؤيتهم، نفهم طموحاتهم، ونعمل على تحويل أفكارهم إلى نتائج ملموسة تترك أثـــــراً حـــقيقياً؛ لأن نجاح عـــملائنا هو الــمعيار الحقيقي لنجاحنا.</p>
       </div>
 
-      <div class="story__media media">
+      <div class="story__media media media--box media--handshake">
         <span class="ring" aria-hidden="true"
               style="--ring-x:49.97%;--ring-y:56.71%;--ring-d:51.80%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
@@ -1714,16 +1725,16 @@
         <div class="call__title-wrap">
           <h2 class="heading heading--lg">التواصل</h2>
         </div>
-        <p class="subtitle">مكالمة واحــدة... قــــد تـــكون بدايــة كـــــــــــــل شـــــيء</p>
+        <p class="subtitle subtitle--muted">مكالمة واحــدة... قــــد تـــكون بدايــة كـــــــــــــل شـــــيء</p>
         <p class="body-text" dir="rtl">مثــل الـــهاتف الــذي صُـمم ليختصر المسافات ويـقرب الأشخاص، فإن التواصل الفعّال لا يقتصر على تبادل الكلمات، بـــــــل على بناء جـسور من الثقة والفهم والتعاون، ففي عالـم الأعمــال لا تبدأ الــنجاحات مــن الــعقود أو الاجــتماعات، بـــل من لــحظة تواصل صـادقة تُفهم فـــيها الاحتياجات وتُبنى فيها العلاقـات، ولـــهذا نؤمــن أن كــــل رسالــــة وكــل مــكالمة وكـــل استفسار يحمل فرصة جديدة للنمو وصناعة قيمة حقيقية.</p>
       </div>
 
-      <div class="call__media media">
+      <div class="call__media media media--box media--phone">
         <span class="ring" aria-hidden="true"
               style="--ring-x:50.73%;--ring-y:45.83%;--ring-d:76.15%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
-        <img src="img/rotary-phone.webp" alt="هاتف قديم بقرص دوّار — ابدأ التواصل" />
+        <img src="img/phone.webp" alt="هاتف قديم بقرص دوّار — ابدأ التواصل" />
       </div>
 
       <div class="story__caption">
@@ -1739,7 +1750,7 @@
         <p class="body-text" dir="rtl">من قلب المنصور، أحد أكثر مناطق بغداد حيويـة وحركة، نعمــل على تحويـل الأفكار إلى مشاريع، والمشاريع إلى قصص نـجاح تروى. وجودنا هنا لا يمثل موقعاً جغرافيـاً فحسب، بل يعكس قـربنا من عملائنا، وسهولة الوصول إلينا، وحرصنا على أن نكون جزءاً مـن المشهد الإبـداعـي المتجدد في العاصمة. من بغداد نبدأ، وإلى كل مكان يصل أثر أعمالنا.</p>
       </div>
 
-      <div class="story__media media" style="width:362px;">
+      <div class="story__media media media--box media--monument" style="width:362px;">
         <span class="ring" aria-hidden="true"
               style="--ring-x:51.36%;--ring-y:37.89%;--ring-d:60.15%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
