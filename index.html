@@ -294,7 +294,7 @@
   .subtitle {
     font-family: var(--font-body);
     font-size: var(--fs-subtitle);
-    color: var(--color-text-light);
+    color: var(--color-text-lighter);   /* artboard #e3e7ea */
     text-align: center;
     line-height: normal;
   }
@@ -759,7 +759,7 @@
     align-items: center;
     justify-content: center;
     gap: 7px;
-    color: #ffffff;              /* always sits on a blue fill */
+    color: var(--color-text-lighter);   /* artboard #e3e7ea */
     font-family: var(--font-button);
     font-weight: 700;
     font-size: var(--fs-body-lg);
@@ -913,6 +913,11 @@
        360px artboard up to the full window width. */
     .page { width: 100%; max-width: 560px; }
     .heading--ads { font-size: 48px; }   /* artboard mobile: الإعلانات is 48, not 50 */
+    /* The two artboards disagree on these two; mobile has its own values. */
+    .subtitle--ads { color: var(--color-text-light); }              /* mobile #dfdfdf */
+    .contact-item:first-child .contact-item__value {
+      color: var(--color-text-lighter);                             /* mobile #e3e7ea */
+    }
     .hero,
     .hero__image,
     .story__media,
@@ -1004,7 +1009,7 @@
       --frame-width: 100%;
       --content-width: 100%;
       --fs-display-xl: 140px;   /* artboard Display/Headline1 */
-      --fs-display-lg: 115px;
+      --fs-display-lg: 140px;   /* artboard: every section heading is Headline1 */
       --fs-hero-title: 85px;   /* artboard Display/Headlin2 */
       --fs-subtitle: 34px;      /* artboard Body/Body 1 */
       --fs-caption-lg: 26px;
@@ -1192,6 +1197,8 @@
     .field__textarea::placeholder { font-size: 34px; }
     .btn-send { width: 300px; align-self: flex-start; height: 64px; font-size: 22px; }
     .contact__reach-title, .contact__follow-title { font-size: 34px; }
+    .subtitle--ads { font-size: 47px; }   /* artboard: this subtitle is larger */
+    .contact__tagline { font-size: 18px; }
     .contact__items { flex-direction: row; justify-content: center; gap: 48px; flex-wrap: wrap; }
     .contact-item { gap: 24px; }
     .contact-item__label, .contact-item__value { font-size: 30px; }
@@ -1660,7 +1667,7 @@
     <section class="story section" id="ads" aria-label="الإعلانات">
       <div class="story__head story__head--tight">
         <h2 class="heading heading--lg heading--ads">الإعـلانات</h2>
-        <p class="subtitle">رحـلة بطيـئة.. ولكنها تـصنع الأثـــر</p>
+        <p class="subtitle subtitle--ads">رحـلة بطيـئة.. ولكنها تـصنع الأثـــر</p>
         <p class="body-text" dir="rtl">مثل السلحفاة لا يعتمد على السرعة وحدها، بل على الثبات والذكاء في اختيــار الطريــــــق. قد لا تكون الأسرع في البدايــة لكنها تعـرف كـيف تصل إلى هدفها بثقـة وتتجـاوز من يـركض بلا اتــجاه. وهكذا هو الإعلان الذكي؛ لا يـطارد النتائج السريعة، بـل يُبنى على اسـتراتيجية واضـــــحة، ورســالة مــدروسـة وفهـم عـميق للجمهور، يتحرك في الوقت المناسب ويصل إلى المكانالصحيح،ليصنع أثراً يبقى في الذاكرة ويحول الانتباه إلى ولاء والمشاهدات إلى نتائج حقيقية.</p>
       </div>
 
