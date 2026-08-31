@@ -648,6 +648,17 @@
   }
   .ads img { width: 100%; height: auto; }
 
+  /* The artboard centres this ring BELOW the photo (114% of its height), so
+     only its upper arc shows through — that is the fan shape, not a full
+     circle. Percentages are relative to the photo, hence its own stage. */
+  .ads__stage {
+    position: relative;
+    line-height: 0;
+    overflow: hidden;          /* the ring is centred low; clip it to the photo */
+  }
+  .ads__stage > img { position: relative; z-index: 1; }
+  .ads__banner { position: relative; z-index: 2; margin-top: 0; }
+
   /* The artboard attaches MOUSE_ENTER -> SMART_ANIMATE, 300ms, ease-out to the
      turtle (الإعلانات) and the two men (المحتوى). */
   .ads img,
@@ -1694,12 +1705,14 @@
         <p class="body-text" dir="rtl">مثل السلحفاة لا يعتمد على السرعة وحدها، بل على الثبات والذكاء في اختيــار الطريــــــق. قد لا تكون الأسرع في البدايــة لكنها تعـرف كـيف تصل إلى هدفها بثقـة وتتجـاوز من يـركض بلا اتــجاه. وهكذا هو الإعلان الذكي؛ لا يـطارد النتائج السريعة، بـل يُبنى على اسـتراتيجية واضـــــحة، ورســالة مــدروسـة وفهـم عـميق للجمهور، يتحرك في الوقت المناسب ويصل إلى المكانالصحيح،ليصنع أثراً يبقى في الذاكرة ويحول الانتباه إلى ولاء والمشاهدات إلى نتائج حقيقية.</p>
       </div>
 
-      <div class="ads media">
-        <span class="ring" aria-hidden="true"
-              style="--ring-x:50%;--ring-y:44%;--ring-d:78%;">
-          <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
-        </span>
-        <img src="img/turtle.webp" alt="سلحفاة على لوح تزلج — الطريق إلى التأثير سباق رؤية" />
+      <div class="ads">
+        <div class="ads__stage media">
+          <span class="ring" aria-hidden="true"
+                style="--ring-x:53.6%;--ring-y:91.4%;--ring-d:91%;">
+            <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
+          </span>
+          <img src="img/turtle.webp" alt="سلحفاة على لوح تزلج — الطريق إلى التأثير سباق رؤية" />
+        </div>
         <p class="ads__banner" dir="rtl">الطريق إلى التأثير ليس سباق سرعة، بل سباق رؤية</p>
       </div>
 
