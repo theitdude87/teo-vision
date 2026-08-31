@@ -981,11 +981,16 @@
       margin: 0 auto;
       left: auto;
       right: auto;
+      /* the reference puts شاهد اعمالنا on the left and ابدأ مشروعك on the
+         right; in RTL the first child lands right, so flip the row */
+      flex-direction: row-reverse;
     }
-    .hero { gap: 0; }
+    /* The client's reference starts the hero 8px under the nav, not the
+       artboard's 35 — that 27px is what put every block below it out of
+       place. Measured against the buttons, the clip, the vision panel and
+       the divider, all four land on the reference once it comes off. */
+    .hero { gap: 0; padding-top: 8px; }
     .hero__head { order: 0; }
-    .hero__vm { margin-top: 16px; }      /* artboard: buttons end 142, vm at 158.5 */
-    .hero__image { margin-top: 45px; }   /* artboard: vm ends 268.5, TV at 313.5 */
     /* full-bleed sections still need a gutter so text never touches the edge */
     .hero__head { padding-inline: 16px; }
 
@@ -1001,9 +1006,11 @@
       display: grid;
       grid-template-columns: 105px 1fr;   /* RTL: the 105px track sits right */
       width: var(--content-width);
-      margin: 0 auto;
+      /* The client's reference puts the panel BELOW the television, 53px
+         under the bottom of the clip. */
+      margin: 53px auto 0;
       gap: 0;
-      order: 1;                            /* the panel precedes the TV */
+      order: 3;
     }
     /* The artboard puts the hamburger on the left and the wordmark on the
        right. In RTL the first DOM child lands on the right, so order them. */
@@ -1011,9 +1018,15 @@
     .theme-toggle { order: 2; }
     .nav__toggle  { order: 3; }
 
-    /* The hero clip already contains the sunburst at the artboard's ratio,
-       so the box is simply the frame width. */
-    .hero__image { order: 2; width: 100%; margin: 0 auto; }
+    /* The clip carries its own sunburst, so the box is just the clip. Measured
+       off the client's reference: 320px wide (a ~20px gutter, wider than the
+       text gutter), sitting 21px under the buttons and above the vision panel. */
+    .hero__image {
+      order: 2;
+      width: 320px;
+      max-width: 100%;
+      margin: 21px auto 0;
+    }
     .hero__strip { display: none; }        /* desktop-only band */
 
     .vm-card { display: contents; }
