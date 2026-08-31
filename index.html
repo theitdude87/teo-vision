@@ -616,7 +616,10 @@
   .service-chip__label {
     font-family: var(--font-display);   /* artboard: Zain Bold */
     font-weight: 700;
-    font-size: 10px;                  /* artboard mobile: Zain Bold 10px */
+    /* Artboard is 10px, but its labels are padded with tatweel sized for
+       Ping/Zain-PC; in Google Zain one of them tips over the 76px column.
+       9.5px keeps every label on a single line as the design has them. */
+    font-size: 9.5px;
     color: var(--color-accent-mid);   /* #5072b0, straight from the artboard */
     line-height: 1.35;
   }
@@ -854,6 +857,16 @@
      CONTACT REACH BLOCKS  ( الموقع / الهاتف / البريد )
      Bordered 48px icon boxes beside a label + value, per the artboard.
      ============================================================ */
+  /* The client video governs this section at every width: three centred lines,
+     no الموقع/الهاتف/البريد labels, no تواصل معنا or تابعنا عبر headings. */
+  .contact__reach-title,
+  .contact__follow-title,
+  .contact-item__label,
+  .contact-item__icon { display: none; }
+  .contact__items { align-items: center; }
+  .contact-item { justify-content: center; }
+  .contact-item__text { align-items: center; text-align: center; }
+
   .contact__reach { width: 100%; display: flex; flex-direction: column; gap: 16px; }
   .contact__reach-title,
   .contact__follow-title {
@@ -871,18 +884,6 @@
     gap: 20px;
   }
   .contact-item { display: flex; align-items: center; gap: 12px; }
-  .contact-item__icon {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    border: 1px solid var(--color-accent-blue);
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-accent-blue);
-  }
-  .contact-item__icon svg { width: 24px; height: 24px; display: block; }
   .contact-item__text { display: flex; flex-direction: column; gap: 4px; text-align: right; }
   .contact-item__label {
     font-family: var(--font-body);
@@ -937,15 +938,7 @@
        360px artboard up to the full window width. */
     .page { width: 100%; max-width: 560px; }
     .heading--ads { font-size: 48px; }   /* artboard mobile: الإعلانات is 48, not 50 */
-    /* The client video's footer is three centred lines with no labels and no
-       headings; the labelled blocks are the desktop artboard's treatment. */
-    .contact__reach-title,
-    .contact__follow-title,
-    .contact-item__label,
-    .contact-item__icon { display: none; }
-    .contact__items { align-items: center; gap: 10px; }
-    .contact-item { justify-content: center; }
-    .contact-item__text { align-items: center; text-align: center; }
+
     /* The two artboards disagree on these two; mobile has its own values. */
     .subtitle--ads { color: var(--color-text-light); }              /* mobile #dfdfdf */
     .contact-item:first-child .contact-item__value {
@@ -1229,13 +1222,10 @@
     .field__textarea { min-height: 518px; border-radius: 12px; padding: 24px; font-size: 34px; }
     .field__textarea::placeholder { font-size: 34px; }
     .btn-send { width: 300px; align-self: flex-start; height: 64px; font-size: 22px; }
-    .contact__reach-title, .contact__follow-title { font-size: 34px; }
     .subtitle--ads { font-size: 47px; }   /* artboard: this subtitle is larger */
     .contact__tagline { font-size: 18px; }
-    .contact__items { flex-direction: row; justify-content: center; gap: 48px; flex-wrap: wrap; }
-    .contact-item { gap: 24px; }
-    .contact-item__label, .contact-item__value { font-size: 30px; }
-    .contact-item__text { gap: 12px; }
+    .contact__items { gap: 14px; }
+    .contact-item__value { font-size: 30px; }
     .contact__logo img { width: 132px; height: auto; }
     .socials__link { width: 48px; height: 48px; }
     .socials__link img,
@@ -1643,10 +1633,10 @@
       <h2 class="heading heading--xl services__title">خــــــــــــــــدماتنا</h2>
       <div class="services__grid">
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label">قسم الإنتاج</span><span class="service-chip__desc">ينقل التجسيد البصري عبر التحريك، التصوير، والمونتاج الصوتي.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قسم الجودة</span><span class="service-chip__desc">يعبر المعاينة عبر المونتاج، اللون، السلاسة، والتصميم الصوتي.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قسم الإبداع</span><span class="service-chip__desc">يضع حجر الأساس للمشاريع بكتابة السكريبت وتوليد الأفكار ورسم الـStoryboard.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قسم التسويق</span><span class="service-chip__desc">يصنع الأثر ويقود الجمهور للاهتمام، من خلال حملات مدروسة وإدارة مؤثرة.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قســـــــــــــم الإنتـــاج</span><span class="service-chip__desc">يتولى الــــــــــــتجسيد البصري عبـــــــر المـــــــخرج، المصور، مــــــــهندس الصـــــوت وفني الإضاءة والمعدات.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قســـــــــــــــم الجودة</span><span class="service-chip__desc">يصقل الهوية النهائيــــة عــبر المونتاج،التلوين،الســـينمائي, التصميم الصوتي والموشن غرافيك.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قســـــــــــــــــم الإبداع</span><span class="service-chip__desc">يـــــــــضع حــــجر الأســــــــــاس للــــمشاريع بكتابة السكريبت وتــــــوليد الأفـــــــــــــكار ورسم الـ Storyboard.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قســـــــــم التسويق</span><span class="service-chip__desc">يصـــــــــــــنع الأثــر رقمياً بإدارة السوشيال ميديا، الإعــــلانات الــممولة وتحــــليل الــــبيانات الاستراتيجية.</span></div>
         </div>
 
         <div class="services__media media">
@@ -1659,16 +1649,16 @@
         </div>
 
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label">إدارة العملاء</span><span class="service-chip__desc">تضمن الوقوف بإدارة استباقية واستيعاب التسليمات.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قسم المبيعات</span><span class="service-chip__desc">يصنع الصفقات الذكية ويفتح آفاق تجارية جاذبة.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قسم البراندنك</span><span class="service-chip__desc">يبني شخصية العلامة التجارية ويوضح هويتها داخل السوق.</span></div>
-          <div class="service-chip"><span class="service-chip__label">البحث والتطوير</span><span class="service-chip__desc">نحلل التجربة ونبتكر حلولاً تعتمد على التقنية والذكاء الاصطناعي.</span></div>
+          <div class="service-chip"><span class="service-chip__label">إدارة العــــــــــــــملاء</span><span class="service-chip__desc">يــــــــــــــضمن الـــــــولاء بإدارة الـــــــــــــمشاريع واســــــتيعاب الرؤيــــــــــــــــــــــة وتأمـــــــــــــين التسليمات.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قســـــــم المبيعات</span><span class="service-chip__desc">يـــــغلق الصـــــــــفقات الذكية ببناء عــلاقـــــــــات متــــــــــينة وتقديـــــم عــروض تــــجارية جذابة.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قســـــــم الـبراندنك</span><span class="service-chip__desc">يبــــــــــني شـخصيـة العـــــلامة الفريــــــــدة ويـصمم بصمتها المرئيـــــــــة ويـــــوحد نــــــــــبرة المحتوى.</span></div>
+          <div class="service-chip"><span class="service-chip__label">البحث والــــــــتطوير</span><span class="service-chip__desc">يقتنص التــــــــــوجهات ويبــتكر أساليب تــــــــصوير حـــــــــــديثة ويدمج الذكاء الاصطناعي(AI) لمواكبة سوق العمل.</span></div>
         </div>
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label">قسم الإدارة</span><span class="service-chip__desc">يقود استراتيجيات التخطيط، المالية، وتنظيم نمو المؤسسة.</span></div>
-          <div class="service-chip"><span class="service-chip__label">القسم التقني</span><span class="service-chip__desc">يبني الأنظمة البرمجية ويصمم مسارات العمل الرقمية.</span></div>
-          <div class="service-chip"><span class="service-chip__label">الموارد البشرية</span><span class="service-chip__desc">يستقطب العقول المبدعة ويصمم بيئة عمل تدفع للتطور المهني.</span></div>
-          <div class="service-chip"><span class="service-chip__label">العلاقات العامة</span><span class="service-chip__desc">يصنع الحضور الإعلامي للمؤسسة ويوثق علاقات خارجية قوية.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قســــــــــــــــــم الإدارة</span><span class="service-chip__desc">يـــــــــــــــقود اســـــــــــتراتيجيات الـــــتشغيل ويـــــــوجه الـــدفة الــــــــمالية ويـــــــــدير الطاقات نحو التوسع والنمو.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قســـــــــــــــــم التقني</span><span class="service-chip__desc">يديــــــــــــــر الأنظمة البرمجية ويــــهندس مســارات العمل الرقـــــــــــــمية (Workflows) ويصون المنصات.</span></div>
+          <div class="service-chip"><span class="service-chip__label">المـــــــوارد البشرية</span><span class="service-chip__desc">يستـــقطب الــعقول المبدعة ويــــــنظم شــــــؤون الــــــفريق ويـــــدعم الــــــتطور الــــــمهني المستمر.</span></div>
+          <div class="service-chip"><span class="service-chip__label">العــــلاقات العامة</span><span class="service-chip__desc">يــــنسق الحـــضور الإعــــلامي للمؤسسة ويـــــــــبني شــــبكة تــــــحالفات خـــارجية قـــــــوية ومستدامة.</span></div>
         </div>
       </div>
     </section>
