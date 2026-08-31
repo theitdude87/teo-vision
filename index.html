@@ -22,11 +22,21 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Zain:wght@300;400;700;800;900&family=Cairo:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Zain:wght@300;400;700;800;900&family=Cairo:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
 <style>
   /* The artboard's own Arabic face. Only the Bold weight is licensed here, so
      it is declared at 700 alone — text set lighter than that falls through to
      Tajawal rather than rendering bold by mistake. */
+  /* The artboard's display face. It is a variable font whose custom `long`
+     axis (0-800) controls swash length — "zain pc v2 mob 800" in the file is
+     this at long: 800, which is where the swept ى tail comes from. */
+  @font-face {
+    font-family: "Zain Mobile Swashes";
+    src: url("fonts/ZainMobileSwashes-VF.woff2") format("woff2-variations");
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+  }
   @font-face {
     font-family: "Ping AR + LT";
     src: url("fonts/PingARLT-Bold.woff2") format("woff2");
@@ -72,10 +82,10 @@
     --marquee-bg: transparent;
 
     /* Typography */
-    --font-display: "Zain", "Cairo", sans-serif;                 /* zain pc v2 mob 800 */
-    --font-body: "Tajawal", "Cairo", sans-serif;                 /* Ping AR + LT: only Bold licensed */
-    --font-button: "Cairo", "Tajawal", sans-serif;
-    --font-decorative: "Zain", "Cairo", sans-serif;              /* The Year of Handicrafts (unlicensed) */
+    --font-display: "Zain Mobile Swashes", "Zain", "Cairo", sans-serif;
+    --font-body: "Blinker", "Tajawal", "Cairo", sans-serif;      /* Blinker covers Latin; Arabic falls through */
+    --font-button: "Blinker", "Cairo", "Tajawal", sans-serif;
+    --font-decorative: "Zain Mobile Swashes", "Zain", "Cairo", sans-serif;   /* The Year of Handicrafts still unlicensed */
 
     --fs-display-xl: 61px;
     --fs-display-lg: 50px;
@@ -282,6 +292,7 @@
 
   .heading {
     font-family: var(--font-display);
+    font-variation-settings: "long" 800;   /* the artboard's swash length */
     color: var(--color-primary);
     font-weight: 800;
     line-height: normal;
@@ -614,7 +625,7 @@
     text-align: right;      /* the artboard right-aligns these, not centred */
   }
   .service-chip__label {
-    font-family: var(--font-display);   /* artboard: Zain Bold */
+    font-family: "Zain", "Cairo", sans-serif;   /* artboard: Zain Bold, not the swash cut */
     font-weight: 700;
     /* Artboard is 10px, but its labels are padded with tatweel sized for
        Ping/Zain-PC; in Google Zain one of them tips over the 76px column.
