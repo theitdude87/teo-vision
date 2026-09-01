@@ -1969,11 +1969,28 @@
       return 'data:image/svg+xml;charset=utf-8,' + svg;
     }
     document.querySelectorAll('img').forEach(function (img) {
-      img.addEventListener('error', function handle() {
+      /* Assigning src aborts whatever was still downloading, and the browser
+         reports that abort as an `error` — so the theme swap was condemning
+         any logo still in flight to the fallback chip. Only a src that is
+         still the one we are asking for has actually failed. */
+      img.addEventListener('error', function () {
         if (img.dataset.fb) return;
-        img.dataset.fb = '1';
-        img.classList.add('is-fallback');
-        img.src = placeholder(img.getAttribute('alt'));
+        var failed = img.getAttribute('src');
+        setTimeout(function () {
+          if (img.dataset.fb) return;
+          if (img.getAttribute('src') !== failed) return;   /* superseded */
+          if (img.complete && img.naturalWidth) return;     /* arrived anyway */
+          img.dataset.fb = '1';
+          img.classList.add('is-fallback');
+          img.src = placeholder(img.getAttribute('alt'));
+        }, 0);
+      });
+      /* and if a real file does arrive later, drop the chip */
+      img.addEventListener('load', function () {
+        var s = img.getAttribute('src') || '';
+        if (s.slice(0, 5) === 'data:') return;
+        img.classList.remove('is-fallback');
+        delete img.dataset.fb;
       });
     });
   })();
