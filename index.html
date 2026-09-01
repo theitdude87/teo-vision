@@ -504,6 +504,12 @@
     align-items: center;
     overflow: hidden;
     position: relative;
+    /* The page is RTL, so a flex row anchors its child at the RIGHT edge and
+       the over-wide track hangs off to the left — then translateX(-n) drags
+       it further left until the row is empty. Both keyframes run negative,
+       so both rows emptied. Anchoring the track at the left edge is what
+       makes the loop cover the row at every phase. */
+    direction: ltr;
   }
   .marquee__track {
     display: flex;
@@ -1438,12 +1444,23 @@
       }
     }
 
+    /* Setting src drops the current frame, so an <img> with width:auto
+       collapses to nothing until the replacement decodes — which would blank
+       the whole logo strip mid-scroll. Decode first, swap after. */
+    function swap(el, want) {
+      if (!want || el.getAttribute('src') === want) return;
+      var pre = new Image();
+      pre.onload = function () { el.setAttribute('src', want); };
+      pre.onerror = function () {};
+      pre.src = want;
+    }
+
     var from = light ? 'img/clients/' : 'img/clients-light/';
     var to   = light ? 'img/clients-light/' : 'img/clients/';
     var logos = document.querySelectorAll('.marquee__logo');
     for (var i = 0; i < logos.length; i++) {
       var a = logos[i].getAttribute('src');
-      if (a && a.indexOf(from) === 0) logos[i].setAttribute('src', to + a.slice(from.length));
+      if (a && a.indexOf(from) === 0) swap(logos[i], to + a.slice(from.length));
     }
 
     /* Photos whose own studio floor is a black slab on a light page carry a
@@ -1452,8 +1469,7 @@
     for (var j = 0; j < pairs.length; j++) {
       var el = pairs[j];
       if (!el.dataset.darkSrc) el.dataset.darkSrc = el.getAttribute('src');
-      var want = light ? el.getAttribute('data-light-src') : el.dataset.darkSrc;
-      if (el.getAttribute('src') !== want) el.setAttribute('src', want);
+      swap(el, light ? el.getAttribute('data-light-src') : el.dataset.darkSrc);
     }
   };
 </script>
@@ -2049,15 +2065,18 @@
         var w = set0.getBoundingClientRect().width;
         if (!w) return;
         var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-        /* enough copies that the row is always covered, even mid-shift */
-        var need = Math.ceil((row.clientWidth + w) / (w + gap)) + 1;
+        /* The track is anchored at the row's left edge and slides by exactly
+           one unit, so it covers the row at every phase as long as it is at
+           least a row plus one shift wide. Clone until that holds. */
+        var shift = w + gap;
+        var need = Math.ceil((row.clientWidth + shift) / shift) + 1;
         while (track.children.length < Math.max(2, need)) {
           var c = set0.cloneNode(true);
           c.setAttribute('aria-hidden', 'true');
           track.appendChild(c);
         }
-        track.style.setProperty('--mq-shift', (w + gap) + 'px');
-        track.style.animationDuration = ((w + gap) / SPEED).toFixed(2) + 's';
+        track.style.setProperty('--mq-shift', shift + 'px');
+        track.style.animationDuration = (shift / SPEED).toFixed(2) + 's';
       });
       /* the clones copy whichever cut the originals carry, so point the
          whole strip at the right one once the row is built */
