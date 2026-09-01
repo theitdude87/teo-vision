@@ -69,9 +69,27 @@ Submissions then show up under **Forms** in the Netlify dashboard.
 
 ## Page weight
 
-About **660 KB** total (59 KB HTML + ~600 KB images). Images are WebP, which
-every browser since 2020 supports. The PNG originals are in `assets-src/` if you
-ever need them back.
+About **2.5 MB** on the dark theme, **3.0 MB** on the light one. Most of that is
+the hero television clip (1.1 MB dark / 1.7 MB light). Everything else is 97 KB
+of HTML, ~900 KB of WebP photos, ~280 KB of client logos and 77 KB of fonts.
+
+Two things ship in a dark and a light cut, because CSS cannot recolour them —
+the hero clip is a flattened video, and the client logos are white artwork whose
+two red marks a plain invert would turn cyan:
+
+```
+img/hero-anim.mp4        img/hero-anim-light.mp4
+img/hero-poster.webp     img/hero-poster-light.webp
+img/clients/             img/clients-light/
+img/turtle.webp          img/turtle-light.webp
+```
+
+A visitor only ever loads one set — `window.teoThemeAssets()` in `index.html`
+picks it. If you re-export any of these, regenerate its pair or the other theme
+will keep the old artwork.
+
+Images are WebP, which every browser since 2020 supports. The PNG originals are
+in `assets-src/` if you ever need them back.
 
 ## Replacing an image later
 
