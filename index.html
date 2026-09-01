@@ -153,8 +153,11 @@
     --ring-color: #0b1220;
     --ring-mul: 0.9;
     --brand-filter: invert(1) hue-rotate(180deg);
-    --stage-bg: #060606;
-    --marquee-bg: #0d0f13;
+    /* Nothing on this page needs a black stage any more: every photo is cut
+       out on transparency, the client logos have a dark-on-light set of their
+       own, and the hero clip is re-encoded on the light page colour. */
+    --stage-bg: transparent;
+    --marquee-bg: transparent;
   }
 
   /* ============================================================
@@ -423,9 +426,10 @@
     height: auto;
     display: block;
   }
-  /* The clip is flattened onto #060606, so on the light theme the hero sits on
-     the same dark stage the ads block uses — the seam is invisible because the
-     stage colour and the clip's baked background are identical. */
+  /* The clip is flattened — it cannot carry alpha at a sane file size — so
+     there are two cuts, one baked on #060606 and one on the light page's
+     #f4f5f7, and the theme script picks the matching one. Either way the
+     clip's own background equals the page's, so no box shows. */
   .hero__image {
     background: var(--stage-bg);
     border-radius: 14px;
@@ -647,9 +651,8 @@
   /* ============================================================
      ADS SECTION (component instance, rendered image)
      ============================================================ */
-  /* The turtle shot carries its own black studio backdrop, so on a light
-     page it needs a dark stage under it or it reads as a stray black box.
-     In dark mode --stage-bg is transparent and nothing changes. */
+  /* The turtle is cut out on transparency, so the stage is transparent in
+     both themes and the photo sits straight on the page. */
   .ads {
     width: var(--frame-width);
     margin: 0 auto;
@@ -1295,9 +1298,9 @@
   .contact__logo img,
   .hero__strip-logo { filter: var(--brand-filter); }
 
-  /* Client logos are white monochrome artwork, so in light mode the
-     strip keeps a dark band rather than inverting 21 files (one of
-     them is not monochrome and would invert to the wrong colour). */
+  /* The client logos are white artwork. Rather than filter them — a plain
+     invert turns the two red marks cyan — img/clients-light/ holds a
+     dark-on-light set, swapped in by the theme script. */
   .marquee {
     background: var(--marquee-bg);
     border-radius: 12px;
@@ -1408,6 +1411,51 @@
         ? 'light' : 'dark');
     document.documentElement.setAttribute('data-theme', theme);
   })();
+
+  /* Two assets cannot be recoloured by CSS: the hero clip is a flattened
+     video, and the client logos are white artwork whose two red marks a
+     plain invert would turn cyan. Each therefore ships in a dark and a
+     light cut, and this swaps between them. Safe to call at any time. */
+  window.teoThemeAssets = function () {
+    var light = document.documentElement.getAttribute('data-theme') === 'light';
+
+    var v = document.getElementById('heroVideo');
+    if (v) {
+      var src = light ? 'img/hero-anim-light.mp4' : 'img/hero-anim.mp4';
+      var pos = light ? 'img/hero-poster-light.webp' : 'img/hero-poster.webp';
+      if (v.getAttribute('src') !== src) {
+        var at = v.currentTime || 0;
+        v.setAttribute('poster', pos);
+        v.setAttribute('src', src);
+        v.load();
+        /* keep the animation where it was rather than restarting it */
+        v.addEventListener('loadedmetadata', function once() {
+          v.removeEventListener('loadedmetadata', once);
+          if (at && at < v.duration) { try { v.currentTime = at; } catch (e) {} }
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        });
+      }
+    }
+
+    var from = light ? 'img/clients/' : 'img/clients-light/';
+    var to   = light ? 'img/clients-light/' : 'img/clients/';
+    var logos = document.querySelectorAll('.marquee__logo');
+    for (var i = 0; i < logos.length; i++) {
+      var a = logos[i].getAttribute('src');
+      if (a && a.indexOf(from) === 0) logos[i].setAttribute('src', to + a.slice(from.length));
+    }
+
+    /* Photos whose own studio floor is a black slab on a light page carry a
+       second cut where that floor is a soft shadow instead. */
+    var pairs = document.querySelectorAll('img[data-light-src]');
+    for (var j = 0; j < pairs.length; j++) {
+      var el = pairs[j];
+      if (!el.dataset.darkSrc) el.dataset.darkSrc = el.getAttribute('src');
+      var want = light ? el.getAttribute('data-light-src') : el.dataset.darkSrc;
+      if (el.getAttribute('src') !== want) el.setAttribute('src', want);
+    }
+  };
 </script>
 </head>
 <body>
@@ -1537,12 +1585,17 @@
            "o" and the wordmark types itself in. It carries its own rotating
            ring, so there is no .ring element here. -->
       <div class="hero__image">
-        <video class="hero__video"
+        <video class="hero__video" id="heroVideo"
                src="img/hero-anim.mp4"
                poster="img/hero-poster.webp"
                autoplay muted loop playsinline preload="metadata"
                aria-label="تلفاز تراثي مزخرف بألوان زرقاء وذهبية يظهر شعار Teo Vision"></video>
       </div>
+      <script>
+        /* Runs the instant the element is parsed, so a light-mode visitor
+           pulls only the first few KB of the dark cut before switching. */
+        if (window.teoThemeAssets) window.teoThemeAssets();
+      </script>
 
       <div class="hero__buttons">
         <button class="btn-pill" type="button">شاهد اعمالنا</button>
@@ -1735,7 +1788,8 @@
                 style="--ring-x:53.6%;--ring-y:91.4%;--ring-d:91%;">
             <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
           </span>
-          <img src="img/turtle.webp" alt="سلحفاة على لوح تزلج — الطريق إلى التأثير سباق رؤية" />
+          <img src="img/turtle.webp" data-light-src="img/turtle-light.webp"
+               alt="سلحفاة على لوح تزلج — الطريق إلى التأثير سباق رؤية" />
         </div>
         <p class="ads__banner" dir="rtl">الطريق إلى التأثير ليس سباق سرعة، بل سباق رؤية</p>
       </div>
@@ -1951,12 +2005,16 @@
       btn.setAttribute('aria-label', dark ? 'التبديل إلى الوضع الفاتح' : 'التبديل إلى الوضع الداكن');
     }
     label();
+    /* the body is parsed by now, so this catches the photos and the logos
+       the in-head call could not see */
+    if (window.teoThemeAssets) window.teoThemeAssets();
 
     btn.addEventListener('click', function () {
       var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('teo-theme', next); } catch (e) {}
       label();
+      if (window.teoThemeAssets) window.teoThemeAssets();
     });
 
     /* Follow the OS only while the visitor has not chosen for themselves */
@@ -1968,6 +2026,7 @@
         if (chosen) return;
         root.setAttribute('data-theme', e.matches ? 'light' : 'dark');
         label();
+        if (window.teoThemeAssets) window.teoThemeAssets();
       });
     }
   })();
@@ -2000,6 +2059,9 @@
         track.style.setProperty('--mq-shift', (w + gap) + 'px');
         track.style.animationDuration = ((w + gap) / SPEED).toFixed(2) + 's';
       });
+      /* the clones copy whichever cut the originals carry, so point the
+         whole strip at the right one once the row is built */
+      if (window.teoThemeAssets) window.teoThemeAssets();
     }
     if (document.readyState === 'complete') build();
     else window.addEventListener('load', build);
