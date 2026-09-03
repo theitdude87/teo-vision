@@ -677,7 +677,8 @@
     overflow: hidden;          /* the ring is centred low; clip it to the photo */
   }
   .ads__stage > img { position: relative; z-index: 1; }
-  .ads__banner { position: relative; z-index: 2; margin-top: 0; }
+  /* the الإعلانات photo is full-bleed, so its banner is too */
+  .ads > .ads__banner { position: relative; z-index: 2; margin-top: 0; width: 100%; }
 
   /* The artboard attaches MOUSE_ENTER -> SMART_ANIMATE, 300ms, ease-out to the
      turtle (الإعلانات) and the two men (المحتوى). */
@@ -694,8 +695,13 @@
     .ads img, .story__media--hover img { transition: none; }
     .ads:hover img, .story__media--hover:hover img { transform: none; filter: none; }
   }
+  /* A banner belongs to the photo above it and must match its width. With no
+     auto margins it used to sit against the RTL start edge, which on any
+     phone wider than 360 read as off-centre. */
   .ads__banner {
-    width: var(--frame-width);
+    width: var(--frame-width);          /* the المحتوى photo is 360 */
+    max-width: 100%;
+    margin-inline: auto;
     background: var(--color-vision-panel);
     color: var(--color-accent-mid);
     font-family: var(--font-body);
@@ -1824,8 +1830,11 @@
       </div>
 
       <div class="story__media media story__media--hover" style="width:360px;">
+        <!-- centred on the bench seat, as the client asked: measured off the
+             photo, the stone slab runs 41.5%-44.5% down and the bench is
+             centred at 49.5% across -->
         <span class="ring" aria-hidden="true"
-              style="--ring-x:50%;--ring-y:48%;--ring-d:62%;">
+              style="--ring-x:49.5%;--ring-y:43%;--ring-d:62%;">
           <svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg>
         </span>
         <img src="img/two-men-reading.webp" alt="رجلان يقرآن على مقعد حجري" />
