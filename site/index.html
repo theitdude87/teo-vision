@@ -1093,6 +1093,12 @@
     }
 
     .page { width: min(1312px, 100% - 48px); padding-bottom: 72px; }   /* artboard content column */
+    /* .page clips overflow-x, which would crop the full-bleed photographs
+       back to the content column. Lift it here and hold the page width at
+       the root instead — `clip` rather than `hidden` so it does not turn
+       the root into a scroll container. */
+    html { overflow-x: clip; }
+    .page { overflow-x: visible; }
 
     /* ---- NAV: wordmark outside a blue pill holding the links ---- */
     .nav {
@@ -1190,7 +1196,8 @@
     .hero__title-wrap { width: 100%; max-width: 860px; }
     .hero__underline { width: min(100%, 1225px); height: 41px; margin-top: -6px; }
     .hero__underline img { width: 100%; height: 41px; }
-    .hero__desc { max-width: 757px; margin: 0 auto; font-size: 22px; line-height: 1.6; }
+    /* artboard: Body/Body 4 at 22, two lines measuring 66 => 33 a line */
+    .hero__desc { max-width: 757px; margin: 0 auto; font-size: 22px; line-height: 1.5; }
 
     .hero__buttons {
       position: static;
@@ -1216,19 +1223,37 @@
     .hero__strip { grid-column: 1 / -1; grid-row: 4; width: 100%; margin-top: 32px; font-size: 18px; }
     .hero__strip-logo { width: 150px; }
 
-    /* ---- MARQUEE ---- */
-    .marquee { padding: 12px 28px; margin-top: 26px; }
-    .marquee__row { height: 92px; }
+    /* ---- MARQUEE ----
+       artboard 1029:2046 is 1312x250 with no padding, so each row is 125.
+       Measuring the ink in the artboard's own render, the tallest logo is
+       66 (the row frame's 109 is its bounding box, not the cap). */
+    .marquee { padding: 0; margin-top: 26px; }
+    .marquee__row { height: 125px; }
     .marquee__track, .marquee__set { --mq-gap: 46px; }
-    .marquee__logo { max-height: 56px; }
+    .marquee__logo { max-height: 66px; }
 
     /* ---- STORY SECTIONS ---- */
     .story { padding-top: 86px; }
     .story__head { gap: 20px; }
     .story__title-group { gap: 22px; }
-    .body-text, .story__caption .body-text { font-size: 30px; line-height: 1.45; max-width: 1312px; }   /* artboard Body/Body 2 */
+    /* artboard Body/Body 2 at 30: a 4-line block measures 192, so 48 a line */
+    .body-text, .story__caption .body-text { font-size: 30px; line-height: 1.6; max-width: 1312px; }
+    /* artboard Body/Body 1 at 34: one line measures 54 */
+    .subtitle { line-height: 1.6; }
+
+    /* Every section photograph is full-bleed on the artboard — image 33,
+       image 37, Two man The laptop and Picture are all 1440 wide against a
+       1440 frame, and image 27 is 1538. They were capped at 1180 inside the
+       content column, so each one rendered 18% small. */
     .story__media,
-    .story__media[style] { width: 100% !important; max-width: 1180px; margin-top: 18px; }
+    .story__media[style],
+    .ads {
+      width: 100vw !important;
+      max-width: none;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+    }
+    .story__media, .story__media[style] { margin-top: 18px; }
     .story__caption { width: 100%; max-width: 1312px; margin-top: 36px; gap: 24px; }
 
     /* ---- SERVICES: department grid on the right, typewriter left ---- */
@@ -1258,13 +1283,14 @@
     .call__media { width: 420px; margin: 0 auto; }
     .call__media img { width: 100%; max-width: none; height: auto; }
 
-    /* ---- ADS ---- */
-    .ads { width: 100%; max-width: 1180px; }
+    /* ---- ADS ---- (.ads itself goes full-bleed with the photos, above) */
     .ads__banner { width: 100%; font-size: 24px; padding: 16px 24px; margin: 10px 0 26px; }
 
     /* ---- CONTACT ---- */
     .contact { width: 100%; max-width: 1312px; padding-top: 96px; gap: 24px; }
-    .contact__row { gap: 24px; }
+    /* artboard 1029:1985: the two fields are 575 and 579 in a 1312 row, so
+       the gap between them is 158, not 24 */
+    .contact__row { gap: 158px; }
     .field { width: auto; flex: 1 1 0; }
     .field__input { font-size: 22px; padding: 0 20px; }
     .field__label { font-size: 34px; }
