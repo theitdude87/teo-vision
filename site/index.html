@@ -1084,22 +1084,22 @@
     :root {
       --frame-width: 100%;
       --content-width: 100%;
-      --fs-display-xl: 140px;   /* artboard Display/Headline1 */
-      --fs-display-lg: 140px;   /* artboard: every section heading is Headline1 */
-      --fs-hero-title: 85px;   /* artboard Display/Headlin2 */
-      --fs-subtitle: 34px;      /* artboard Body/Body 1 */
-      --fs-caption-lg: 26px;
-      --fs-vision-label: 78px;  /* artboard Display/Headline3 */
+      --fs-display-xl: 80px;    /* display  */
+      --fs-display-lg: 80px;    /* display  */
+      --fs-hero-title: 48px;    /* h1       */
+      --fs-subtitle: 24px;      /* h3       */
+      --fs-caption-lg: 20px;    /* lead     */
+      --fs-vision-label: 32px;  /* h2       */
     }
 
-    .page { width: min(1312px, 100% - 48px); padding-bottom: 72px; }   /* artboard content column */
+    .page { width: min(1312px, 100% - 48px); padding-bottom: 64px; }   /* artboard content column */
 
     /* ---- NAV: wordmark outside a blue pill holding the links ---- */
     .nav {
       background: transparent;
       border-radius: 0;
       height: auto;
-      margin: 20px 0 0;
+      margin: 16px 0 0;
       padding: 0;
       gap: 24px;
       top: 12px;
@@ -1116,22 +1116,22 @@
       max-width: 1111px;
       background: var(--color-primary);
       border-radius: 24px;
-      padding: 16px 36px;
+      padding: 12px 24px;
     }
     .nav__cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 44px;
+      height: 40px;
       padding: 0 16px;
-      min-width: 144px;
+      min-width: 120px;
       background: var(--color-send);
       border: 1px solid var(--color-btn-border);
       border-radius: 22px;
       color: #ffffff;
       font-family: var(--font-button);
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15px;
       white-space: nowrap;
       flex-shrink: 0;
       order: 2;                    /* RTL: pushes the CTA to the pill's left */
@@ -1144,7 +1144,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: clamp(32px, 6.2vw, 89px);
+      gap: clamp(24px, 4vw, 48px);
       flex: 1 1 auto;
       background: none;
       padding: 0;
@@ -1153,7 +1153,7 @@
     .nav__links a {
       font-family: var(--font-button);
       font-weight: 700;
-      font-size: 18px;
+      font-size: 15px;
       color: #ebf1f7;
       white-space: nowrap;
     }
@@ -1173,7 +1173,7 @@
       border-radius: 2px;
       background: #eaf3ff;
     }
-    .theme-toggle { order: 2; width: 44px; height: 44px; }
+    .theme-toggle { order: 2; width: 40px; height: 40px; }
     .theme-toggle svg { width: 21px; height: 21px; }
 
     /* ---- HERO: heading, then mission | television | vision ---- */
@@ -1183,15 +1183,15 @@
       column-gap: 24px;
       row-gap: 0;
       align-items: center;
-      padding-top: 54px;
+      padding-top: 48px;
       width: 100%;
     }
-    .hero__head { grid-column: 1 / -1; grid-row: 1; gap: 20px; margin-bottom: 26px; }
-    .hero__title-wrap { width: 100%; max-width: 860px; }
-    .hero__underline { width: min(100%, 1225px); height: 41px; margin-top: -6px; }
-    .hero__underline img { width: 100%; height: 41px; }
+    .hero__head { grid-column: 1 / -1; grid-row: 1; gap: 16px; margin-bottom: 24px; }
+    .hero__title-wrap { width: 100%; max-width: 520px; }
+    .hero__underline { width: min(100%, 700px); height: 23px; margin-top: -4px; }
+    .hero__underline img { width: 100%; height: 23px; }
     /* artboard: Body/Body 4 at 22, two lines measuring 66 => 33 a line */
-    .hero__desc { max-width: 757px; margin: 0 auto; font-size: 22px; line-height: 1.5; }
+    .hero__desc { max-width: 640px; margin: 0 auto; font-size: 17px; line-height: 1.65; }
 
     .hero__buttons {
       position: static;
@@ -1199,10 +1199,10 @@
       grid-row: 2;
       width: auto;
       justify-content: center;
-      gap: 14px;
+      gap: 16px;
       align-self: end;
       z-index: 2;
-      margin-bottom: -14px;
+      margin-bottom: -12px;
     }
     .btn-pill { height: 37px; width: 133px; padding: 0 16px; font-size: 16px; }
 
@@ -1212,26 +1212,26 @@
     .vm-card { grid-row: 3; align-self: stretch; justify-content: flex-start; gap: 8px; padding: 16px; border-radius: 0; border: 0; max-width: 382px; }
     .vm-card--vision  { grid-column: 1; justify-self: start; }   /* RTL: column 1 is the right */
     .vm-card--mission { grid-column: 3; justify-self: end; }
-    .vm-card__text { font-size: 24px; line-height: 1.5; width: 331px; max-width: 100%; }
+    .vm-card__text { font-size: 17px; line-height: 1.7; width: 100%; max-width: 100%; }
 
-    .hero__strip { grid-column: 1 / -1; grid-row: 4; width: 100%; margin-top: 32px; font-size: 18px; }
+    .hero__strip { grid-column: 1 / -1; grid-row: 4; width: 100%; margin-top: 32px; font-size: 14px; }
     .hero__strip-logo { width: 150px; }
 
     /* ---- MARQUEE ----
        artboard 1029:2046 is 1312x250 with no padding, so each row is 125.
        Measuring the ink in the artboard's own render, the tallest logo is
        66 (the row frame's 109 is its bounding box, not the cap). */
-    .marquee { padding: 0; margin-top: 26px; }
-    .marquee__row { height: 125px; }
-    .marquee__track, .marquee__set { --mq-gap: 46px; }
-    .marquee__logo { max-height: 66px; }
+    .marquee { padding: 0; margin-top: 24px; }
+    .marquee__row { height: 80px; }
+    .marquee__track, .marquee__set { --mq-gap: 32px; }
+    .marquee__logo { max-height: 40px; }
 
     /* ---- STORY SECTIONS ---- */
-    .story { padding-top: 86px; }
-    .story__head { gap: 20px; }
-    .story__title-group { gap: 22px; }
+    .story { padding-top: 64px; }
+    .story__head { gap: 16px; }
+    .story__title-group { gap: 24px; }
     /* artboard Body/Body 2 at 30: a 4-line block measures 192, so 48 a line */
-    .body-text, .story__caption .body-text { font-size: 30px; line-height: 1.6; max-width: 1312px; }
+    .body-text, .story__caption .body-text { font-size: 17px; line-height: 1.75; max-width: 860px; }
     /* artboard Body/Body 1 at 34: one line measures 54 */
     .subtitle { line-height: 1.6; }
 
@@ -1243,24 +1243,24 @@
        padded the difference with empty page. Let each photo set its own
        height here. */
     .story__media,
-    .story__media[style] { width: 100% !important; max-width: 1180px; margin-top: 18px; }
+    .story__media[style] { width: 100% !important; max-width: 900px; margin-top: 16px; }
     .media--handshake,
     .media--monument,
     .media--phone { aspect-ratio: auto; }
     .media--box > img { height: auto; }
-    .story__caption { width: 100%; max-width: 1312px; margin-top: 36px; gap: 24px; }
+    .story__caption { width: 100%; max-width: 860px; margin-top: 32px; gap: 24px; }
 
     /* ---- SERVICES: department grid on the right, typewriter left ---- */
-    .services__title { margin-bottom: 36px; text-align: right; width: 100%; white-space: nowrap; }
+    .services__title { margin-bottom: 32px; text-align: right; width: 100%; white-space: nowrap; }
     .services__grid {
       width: 100%;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 394px;
-      column-gap: 40px;
-      row-gap: 36px;
+      column-gap: 32px;
+      row-gap: 32px;
       align-items: start;
     }
-    .services__row { grid-column: 1; gap: 28px; grid-template-columns: repeat(4, 182px); justify-content: end; }
+    .services__row { grid-column: 1; gap: 24px; grid-template-columns: repeat(4, 182px); justify-content: end; }
     .services__media {
       grid-column: 2;
       grid-row: 1 / span 3;
@@ -1268,8 +1268,8 @@
       align-self: center;
     }
     .service-chip { gap: 8px; }
-    .service-chip__label { font-size: 26px; }
-    .service-chip__desc { font-size: 16px; line-height: 1.55; }
+    .service-chip__label { font-size: 17px; }
+    .service-chip__desc { font-size: 14px; line-height: 1.6; }
 
     /* ---- CONTACT CALL-OUT ----
        The ring is a percentage of its own box, so the box has to track the
@@ -1278,27 +1278,27 @@
     .call__media img { width: 100%; max-width: none; height: auto; }
 
     /* ---- ADS ---- */
-    .ads { width: 100%; max-width: 1180px; }
-    .ads__banner { width: 100%; font-size: 24px; padding: 16px 24px; margin: 10px 0 26px; }
+    .ads { width: 100%; max-width: 900px; }
+    .ads__banner { width: 100%; font-size: 18px; padding: 12px 24px; margin: 8px 0 24px; }
 
     /* ---- CONTACT ---- */
-    .contact { width: 100%; max-width: 1312px; padding-top: 96px; gap: 24px; }
+    .contact { width: 100%; max-width: 1312px; padding-top: 64px; gap: 24px; }
     /* artboard 1029:1985: the two fields are 575 and 579 in a 1312 row, so
        the gap between them is 158, not 24 */
-    .contact__row { gap: 158px; }
+    .contact__row { gap: 24px; }
     .field { width: auto; flex: 1 1 0; }
-    .field__input { font-size: 22px; padding: 0 20px; }
-    .field__label { font-size: 34px; }
-    .field__input { height: 73px; border-radius: 12px; }
-    .field__textarea { min-height: 518px; border-radius: 12px; padding: 24px; font-size: 34px; }
-    .field__textarea::placeholder { font-size: 34px; }
-    .btn-send { width: 300px; align-self: flex-start; height: 64px; font-size: 22px; }
-    .subtitle--ads { font-size: 47px; }   /* artboard: this subtitle is larger */
-    .contact__tagline { font-size: 18px; }
-    .contact__items { gap: 14px; }
-    .contact-item__value { font-size: 30px; }
+    .field__input { font-size: 17px; padding: 0 16px; }
+    .field__label { font-size: var(--fs-subtitle); }
+    .field__input { height: 48px; border-radius: 8px; }
+    .field__textarea { min-height: 200px; border-radius: 8px; padding: 16px; font-size: 17px; }
+    .field__textarea::placeholder { font-size: 17px; }
+    .btn-send { width: 200px; align-self: flex-start; height: 48px; font-size: 17px; }
+    .subtitle--ads { font-size: var(--fs-subtitle); }   /* was a 47px one-off */
+    .contact__tagline { font-size: 14px; }
+    .contact__items { gap: 16px; }
+    .contact-item__value { font-size: 20px; }
     .contact__logo img { width: 132px; height: auto; }
-    .socials__link { width: 48px; height: 48px; }
+    .socials__link { width: 40px; height: 40px; }
     .socials__link img,
     .socials__link svg { width: 24px; height: 24px; padding: 0; }
   }
