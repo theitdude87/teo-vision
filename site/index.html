@@ -1093,12 +1093,6 @@
     }
 
     .page { width: min(1312px, 100% - 48px); padding-bottom: 72px; }   /* artboard content column */
-    /* .page clips overflow-x, which would crop the full-bleed photographs
-       back to the content column. Lift it here and hold the page width at
-       the root instead — `clip` rather than `hidden` so it does not turn
-       the root into a scroll container. */
-    html { overflow-x: clip; }
-    .page { overflow-x: visible; }
 
     /* ---- NAV: wordmark outside a blue pill holding the links ---- */
     .nav {
@@ -1241,19 +1235,19 @@
     /* artboard Body/Body 1 at 34: one line measures 54 */
     .subtitle { line-height: 1.6; }
 
-    /* Every section photograph is full-bleed on the artboard — image 33,
-       image 37, Two man The laptop and Picture are all 1440 wide against a
-       1440 frame, and image 27 is 1538. They were capped at 1180 inside the
-       content column, so each one rendered 18% small. */
+    /* The artboard runs these full-bleed at 1440, but a 1440-wide press
+       photograph swallows a laptop screen whole — the clapperboard hand
+       alone filled the viewport. Keep them inside the content column.
+       aspect-ratio, though, is the mobile artboard's box shape: at 1180
+       wide it made the handshake box 1150 tall for a 1024-tall picture and
+       padded the difference with empty page. Let each photo set its own
+       height here. */
     .story__media,
-    .story__media[style],
-    .ads {
-      width: 100vw !important;
-      max-width: none;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
-    }
-    .story__media, .story__media[style] { margin-top: 18px; }
+    .story__media[style] { width: 100% !important; max-width: 1180px; margin-top: 18px; }
+    .media--handshake,
+    .media--monument,
+    .media--phone { aspect-ratio: auto; }
+    .media--box > img { height: auto; }
     .story__caption { width: 100%; max-width: 1312px; margin-top: 36px; gap: 24px; }
 
     /* ---- SERVICES: department grid on the right, typewriter left ---- */
@@ -1283,7 +1277,8 @@
     .call__media { width: 420px; margin: 0 auto; }
     .call__media img { width: 100%; max-width: none; height: auto; }
 
-    /* ---- ADS ---- (.ads itself goes full-bleed with the photos, above) */
+    /* ---- ADS ---- */
+    .ads { width: 100%; max-width: 1180px; }
     .ads__banner { width: 100%; font-size: 24px; padding: 16px 24px; margin: 10px 0 26px; }
 
     /* ---- CONTACT ---- */
