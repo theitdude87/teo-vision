@@ -1076,6 +1076,12 @@
     .services__media img { width: 100%; }
   }
 
+  /* Where the desktop artboard words something differently from the
+     phone (same text, different kashida), both versions ship and the
+     breakpoint picks one. Phone first: .t-d is hidden until >=900. */
+  .t-d { display: none; }
+  .socials--full { display: none; }
+
   /* ============================================================
      LAPTOP  (>=900)
      Rebuilt from the 1440 Figma artboard — same assets, wider grid.
@@ -1084,12 +1090,12 @@
     :root {
       --frame-width: 100%;
       --content-width: 100%;
-      --fs-display-xl: 80px;    /* display  */
-      --fs-display-lg: 80px;    /* display  */
-      --fs-hero-title: 48px;    /* h1       */
+      --fs-display-xl: 140px;   /* artboard Headline1 */
+      --fs-display-lg: 140px;   /* artboard Headline1 */
+      --fs-hero-title: 85px;    /* artboard Headlin2  */
       --fs-subtitle: 24px;      /* h3       */
       --fs-caption-lg: 20px;    /* lead     */
-      --fs-vision-label: 32px;  /* h2       */
+      --fs-vision-label: 78px;  /* artboard Headline3 */
     }
 
     .page { width: min(1312px, 100% - 48px); padding-bottom: 64px; }   /* artboard content column */
@@ -1116,22 +1122,22 @@
       max-width: 1111px;
       background: var(--color-primary);
       border-radius: 24px;
-      padding: 12px 24px;
+      padding: 16px 36px;
     }
     .nav__cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 40px;
+      height: 44px;
       padding: 0 16px;
-      min-width: 120px;
-      background: var(--color-send);
+      min-width: 144px;
+      background: #416da3;
       border: 1px solid var(--color-btn-border);
       border-radius: 22px;
       color: #ffffff;
       font-family: var(--font-button);
       font-weight: 700;
-      font-size: 15px;
+      font-size: 16px;
       white-space: nowrap;
       flex-shrink: 0;
       order: 2;                    /* RTL: pushes the CTA to the pill's left */
@@ -1144,7 +1150,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: clamp(24px, 4vw, 48px);
+      gap: clamp(32px, 6.2vw, 89px);
       flex: 1 1 auto;
       background: none;
       padding: 0;
@@ -1153,7 +1159,7 @@
     .nav__links a {
       font-family: var(--font-button);
       font-weight: 700;
-      font-size: 15px;
+      font-size: 18px;
       color: #ebf1f7;
       white-space: nowrap;
     }
@@ -1173,7 +1179,7 @@
       border-radius: 2px;
       background: #eaf3ff;
     }
-    .theme-toggle { order: 2; width: 40px; height: 40px; }
+    .theme-toggle { order: 2; width: 44px; height: 44px; }
     .theme-toggle svg { width: 21px; height: 21px; }
 
     /* ---- HERO: heading, then mission | television | vision ---- */
@@ -1187,11 +1193,11 @@
       width: 100%;
     }
     .hero__head { grid-column: 1 / -1; grid-row: 1; gap: 16px; margin-bottom: 24px; }
-    .hero__title-wrap { width: 100%; max-width: 520px; }
-    .hero__underline { width: min(100%, 700px); height: 23px; margin-top: -4px; }
-    .hero__underline img { width: 100%; height: 23px; }
+    .hero__title-wrap { width: 100%; max-width: 860px; }
+    .hero__underline { width: min(100%, 1225px); height: 41px; margin-top: -6px; }
+    .hero__underline img { width: 100%; height: 41px; }
     /* artboard: Body/Body 4 at 22, two lines measuring 66 => 33 a line */
-    .hero__desc { max-width: 640px; margin: 0 auto; font-size: 17px; line-height: 1.65; }
+    .hero__desc { max-width: 757px; margin: 0 auto; font-size: 22px; line-height: normal; text-align: right; }
 
     .hero__buttons {
       position: static;
@@ -1209,10 +1215,10 @@
     .hero__image { grid-column: 2; grid-row: 3; width: 100%; }
     /* let the two cards become grid items so they can flank the TV */
     .hero__vm { display: contents; }
-    .vm-card { grid-row: 3; align-self: stretch; justify-content: flex-start; gap: 8px; padding: 16px; border-radius: 0; border: 0; max-width: 382px; }
+    .vm-card { grid-row: 3; align-self: stretch; justify-content: flex-start; gap: 8px; padding: 16px; border-radius: 0; border: 0; max-width: 370px; }
     .vm-card--vision  { grid-column: 1; justify-self: start; }   /* RTL: column 1 is the right */
     .vm-card--mission { grid-column: 3; justify-self: end; }
-    .vm-card__text { font-size: 17px; line-height: 1.7; width: 100%; max-width: 100%; }
+    .vm-card__text { font-size: 24px; line-height: normal; width: 100%; max-width: 100%; text-align: right; }
 
     .hero__strip { grid-column: 1 / -1; grid-row: 4; width: 100%; margin-top: 32px; font-size: 14px; }
     .hero__strip-logo { width: 150px; }
@@ -1251,16 +1257,16 @@
     .story__caption { width: 100%; max-width: 860px; margin-top: 32px; gap: 24px; }
 
     /* ---- SERVICES: department grid on the right, typewriter left ---- */
-    .services__title { margin-bottom: 32px; text-align: right; width: 100%; white-space: nowrap; }
+    .services__title { margin-bottom: 0; text-align: right; width: 100%; white-space: nowrap; }
     .services__grid {
       width: 100%;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 394px;
       column-gap: 32px;
-      row-gap: 32px;
+      row-gap: 36px;
       align-items: start;
     }
-    .services__row { grid-column: 1; gap: 24px; grid-template-columns: repeat(4, 182px); justify-content: end; }
+    .services__row { grid-column: 1; gap: 28px; grid-template-columns: repeat(4, 182px); justify-content: end; }
     .services__media {
       grid-column: 2;
       grid-row: 1 / span 3;
@@ -1268,8 +1274,8 @@
       align-self: center;
     }
     .service-chip { gap: 8px; }
-    .service-chip__label { font-size: 17px; }
-    .service-chip__desc { font-size: 14px; line-height: 1.6; }
+    .service-chip__label { font-size: 26px; white-space: nowrap; }
+    .service-chip__desc { font-size: 16px; line-height: normal; }
 
     /* ---- CONTACT CALL-OUT ----
        The ring is a percentage of its own box, so the box has to track the
@@ -1301,6 +1307,67 @@
     .socials__link { width: 40px; height: 40px; }
     .socials__link img,
     .socials__link svg { width: 24px; height: 24px; padding: 0; }
+
+    /* ---- Client review, 2026-09-11 -------------------------------- */
+    .t-m { display: none; }
+    .t-d { display: inline; }
+    /* "من نحن" is plain text on the artboard; the sweep is the font's long axis */
+    .hero__title { font-variation-settings: "long" 800; }
+    /* the artboard hero has one button — ابدأ مشروعك already lives in the nav */
+    .btn-pill--m { display: none; }
+    /* television box at the artboard's 494 x 500 */
+    .hero__video { height: 500px; object-fit: contain; }
+    /* The artboard sets this in The Year of Handicrafts Regular, which we do
+       not have. The fallback was the swash display face — heavy, and wide
+       enough to spill onto a third line. A plain regular face is closer. */
+    .hero__desc { font-family: var(--font-body); font-weight: 400; max-width: 800px; }   /* 757 in the artboard; the stand-in face runs ~5% wider, which left حقيقيًا. alone on a third line */
+    /* Artboard spacing (1029:1789): the ornaments overlap the description
+       instead of taking a row, the button straddles the gap, and the cards
+       start 24 under the description. */
+    .hero__underline { margin-bottom: -35px; }
+    .hero__head { margin-bottom: 0; }
+    .hero__buttons { margin-bottom: -13px; }
+    .hero__strip { font-size: 18px; }
+    /* RTL: `end` pushed the department grid to the left; the artboard sets
+       it flush right, under the heading */
+    .services__row { justify-content: start; }
+
+    /* seven networks, as drawn (1029:2950): 44px cells, 30px marks */
+    .socials { display: none; }
+    .socials--full {
+      display: flex;
+      direction: ltr;
+      justify-content: space-between;
+      width: 376px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    .socials--full a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+    .socials--full a:hover,
+    .socials--full a:focus-visible { transform: translateY(-2px); }
+    .socials--full img { display: block; width: 30px; height: 30px; }
+
+    /* Rings rise into place, then turn — each artboard variant starts its
+       wheel below the picture. Armed only once the script has run, so with
+       scripting off the rings simply show. */
+    .rings-armed .media .ring {
+      transition: translate 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.9s ease-out;
+    }
+    .rings-armed .media .ring:not(.is-in) { translate: 0 30%; opacity: 0; }
+    .rings-armed .media .ring:not(.is-in) > svg { animation-play-state: paused; }
+    /* the phone's wheel waits for the mouse, as the artboard does */
+    .rings-armed .call__media .ring { translate: 0 30%; opacity: 0; }
+    .rings-armed .call__media .ring > svg { animation-play-state: paused; }
+    .rings-armed .call__media:hover .ring { translate: 0 0; opacity: 1; }
+    .rings-armed .call__media:hover .ring > svg { animation-play-state: running; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1613,14 +1680,13 @@
     <section class="hero section" id="hero" aria-label="من نحن">
       <div class="hero__head">
         <div class="hero__title-wrap">
-          <h1 class="hero__title">مــن نحـن</h1>
+          <h1 class="hero__title"><span class="t-m">مــن نحـن</span><span class="t-d">من نحن</span></h1>
           <span class="hero__underline" aria-hidden="true">
             <img src="img/hero-swash.webp" alt="" />
           </span>
         </div>
         <p class="hero__desc" dir="rtl">
-          Teo Vision ليست مجرد شركة تسويق أو إنتاج بصـري بل هــي Production House &amp; Marketing Agency
-          تـــجـــمع بــين الإبـــداع الاســتراتيجي، والتقنيـــة لـــصناعــة محـــتـوى يـــترك أثرًا حقيقيًا.
+          <span class="t-m">Teo Vision ليست مجرد شركة تسويق أو إنتاج بصـري بل هــي Production House &amp; Marketing Agency تـــجـــمع بــين الإبـــداع الاســتراتيجي، والتقنيـــة لـــصناعــة محـــتـوى يـــترك أثرًا حقيقيًا.</span><span class="t-d">Teo Vision ليــست مـجرد شركة تــسويـــــق أو إنتـــاج بصـــري بل هـــي Production House &amp; Marketing Agency تجمع بين الإبداع الاستراتيجي، والتقنية لصناعـة محتوى يترك أثرًا حقيقيًا.</span>
         </p>
       </div>
 
@@ -1642,17 +1708,17 @@
 
       <div class="hero__buttons">
         <button class="btn-pill" type="button">شاهد اعمالنا</button>
-        <button class="btn-pill" type="button">ابدأ مشروعك</button>
+        <button class="btn-pill btn-pill--m" type="button">ابدأ مشروعك</button>
       </div>
 
       <div class="hero__vm">
         <article class="vm-card vm-card--vision">
-          <h3 class="vm-card__title">رؤيـــــــــتـنـا</h3>
-          <p class="vm-card__text" dir="rtl">نسعى لأن نكون الشريك الإبداعي الأول للعلامات التجارية والشركات، من خــلال دمــج الإنتـــاج الإعـــلامي، والتسويق، والـــتقنيات الحـــديـثة، لصناعة تجارب بصرية وحلول تسويقية تتجاوز التوقعات.</p>
+          <h3 class="vm-card__title"><span class="t-m">رؤيـــــــــتـنـا</span><span class="t-d">رؤيـــــــــــتنا</span></h3>
+          <p class="vm-card__text" dir="rtl"><span class="t-m">نسعى لأن نكون الشريك الإبداعي الأول للعلامات التجارية والشركات، من خــلال دمــج الإنتـــاج الإعـــلامي، والتسويق، والـــتقنيات الحـــديـثة، لصناعة تجارب بصرية وحلول تسويقية تتجاوز التوقعات.</span><span class="t-d">نـســـــعى لأن نــــــــــكـــــون الشريــــــك<br>الإبــــــــــــداعي الأول للعـــــــــــــــلامات<br>التـجـــــــــــــــــارية والشـركـــــــــات، مــن<br>خـــــــــــــــــلال دمـــــج الإنــتــــــــــــــــــــاج<br>الإعــــــــــــــــــلامـــــي، والتــــــــــــسويق،<br>والتــقنــــــــــــــــــــــيـات الــــحـديـثـــــــــــة،<br>لــــــــــصـنـاعـة تـجـــــــارب بـــــــــــــصرية<br>وحــــــــــلول تــــــــسويقية تتجـــــــــــاوز<br>التوقعات.</span></p>
         </article>
         <article class="vm-card vm-card--mission">
-          <h3 class="vm-card__title">رســـالتـنـا</h3>
-          <p class="vm-card__text" dir="rtl">نحوّل الأفكار إلى تجارب بصرية وحــلول تــسويقية تـصنع فرقًا حقيقيًا. من خلال الإبداع، والإنتاج، والـــــتسويق، نساعد العلامات التجارية على بناء هويتها والوصول إلى جمهورها بوضوح وتأثير حقيقي.</p>
+          <h3 class="vm-card__title"><span class="t-m">رســـالتـنـا</span><span class="t-d">رســــــــالتنـا</span></h3>
+          <p class="vm-card__text" dir="rtl"><span class="t-m">نحوّل الأفكار إلى تجارب بصرية وحــلول تــسويقية تـصنع فرقًا حقيقيًا. من خلال الإبداع، والإنتاج، والـــــتسويق، نساعد العلامات التجارية على بناء هويتها والوصول إلى جمهورها بوضوح وتأثير حقيقي.</span><span class="t-d">نــــــحوّل الأفـكـــــــار إلى تـــــــــــــــجارب<br>بــــــــصرية وحــــــــلـــول تـــــــــسويقيـة<br>تـــــــصنع فـــــــــــرقًا حقيــــــــــــقيًا. مـن<br>خـــــــلال الإبــــــــــداع، والإنــــــــــــــتــاج، والـتــــــــــــــــسـويــق، نـــــــــــــــــــسـاعـد العـــــــــــــلامات التـــــــــــــــــجاريــة على<br>بـناء هويتــــــــــــها والوصــــــــــــــول إلى جمــــــــــــهورها بوضــــــوح وتــــــــــأثير<br>حقيقي.</span></p>
         </article>
       </div>
 
@@ -1761,13 +1827,13 @@
 
     <!-- ========================== SERVICES GRID ========================== -->
     <section class="story section" id="services" aria-label="خدماتنا">
-      <h2 class="heading heading--xl services__title">خــــــــــــــــدماتنا</h2>
+      <h2 class="heading heading--xl services__title"><span class="t-m">خــــــــــــــــدماتنا</span><span class="t-d">خــــــــــــــــــــــدماتنا</span></h2>
       <div class="services__grid">
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label">قســـــــــــــم الإنتـــاج</span><span class="service-chip__desc">يتولى الــــــــــــتجسيد البصري عبـــــــر المـــــــخرج، المصور، مــــــــهندس الصـــــوت وفني الإضاءة والمعدات.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قســـــــــــــــم الجودة</span><span class="service-chip__desc">يصقل الهوية النهائيــــة عــبر المونتاج،التلوين،الســـينمائي, التصميم الصوتي والموشن غرافيك.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قســـــــــــــــــم الإبداع</span><span class="service-chip__desc">يـــــــــضع حــــجر الأســــــــــاس للــــمشاريع بكتابة السكريبت وتــــــوليد الأفـــــــــــــكار ورسم الـ Storyboard.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قســـــــــم التسويق</span><span class="service-chip__desc">يصـــــــــــــنع الأثــر رقمياً بإدارة السوشيال ميديا، الإعــــلانات الــممولة وتحــــليل الــــبيانات الاستراتيجية.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــم الإنتـــاج</span><span class="t-d">قســـــــــم الإنتـــاج</span></span><span class="service-chip__desc">يتولى الــــــــــــتجسيد البصري عبـــــــر المـــــــخرج، المصور، مــــــــهندس الصـــــوت وفني الإضاءة والمعدات.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــم الجودة</span><span class="t-d">قســــــــــم الجودة</span></span><span class="service-chip__desc">يصقل الهوية النهائيــــة عــبر المونتاج،التلوين،الســـينمائي, التصميم الصوتي والموشن غرافيك.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــــم الإبداع</span><span class="t-d">قســــــــــــم الإبداع</span></span><span class="service-chip__desc">يـــــــــضع حــــجر الأســــــــــاس للــــمشاريع بكتابة السكريبت وتــــــوليد الأفـــــــــــــكار ورسم الـ Storyboard.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــم التسويق</span><span class="t-d">قســــم التسويق</span></span><span class="service-chip__desc">يصـــــــــــــنع الأثــر رقمياً بإدارة السوشيال ميديا، الإعــــلانات الــممولة وتحــــليل الــــبيانات الاستراتيجية.</span></div>
         </div>
 
         <div class="services__media media">
@@ -1780,16 +1846,16 @@
         </div>
 
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label">إدارة العــــــــــــــملاء</span><span class="service-chip__desc">يــــــــــــــضمن الـــــــولاء بإدارة الـــــــــــــمشاريع واســــــتيعاب الرؤيــــــــــــــــــــــة وتأمـــــــــــــين التسليمات.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قســـــــم المبيعات</span><span class="service-chip__desc">يـــــغلق الصـــــــــفقات الذكية ببناء عــلاقـــــــــات متــــــــــينة وتقديـــــم عــروض تــــجارية جذابة.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قســـــــم الـبراندنك</span><span class="service-chip__desc">يبــــــــــني شـخصيـة العـــــلامة الفريــــــــدة ويـصمم بصمتها المرئيـــــــــة ويـــــوحد نــــــــــبرة المحتوى.</span></div>
-          <div class="service-chip"><span class="service-chip__label">البحث والــــــــتطوير</span><span class="service-chip__desc">يقتنص التــــــــــوجهات ويبــتكر أساليب تــــــــصوير حـــــــــــديثة ويدمج الذكاء الاصطناعي(AI) لمواكبة سوق العمل.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">إدارة العــــــــــــــملاء</span><span class="t-d">إدارة العمـــــــــــلاء</span></span><span class="service-chip__desc">يــــــــــــــضمن الـــــــولاء بإدارة الـــــــــــــمشاريع واســــــتيعاب الرؤيــــــــــــــــــــــة وتأمـــــــــــــين التسليمات.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــم المبيعات</span><span class="t-d">قســم المبيعات</span></span><span class="service-chip__desc">يـــــغلق الصـــــــــفقات الذكية ببناء عــلاقـــــــــات متــــــــــينة وتقديـــــم عــروض تــــجارية جذابة.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــم الـبراندنك</span><span class="t-d">قســــم البراندنك</span></span><span class="service-chip__desc">يبــــــــــني شـخصيـة العـــــلامة الفريــــــــدة ويـصمم بصمتها المرئيـــــــــة ويـــــوحد نــــــــــبرة المحتوى.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">البحث والــــــــتطوير</span><span class="t-d">البحث والتـطـوير</span></span><span class="service-chip__desc">يقتنص التــــــــــوجهات ويبــتكر أساليب تــــــــصوير حـــــــــــديثة ويدمج الذكاء الاصطناعي(AI) لمواكبة سوق العمل.</span></div>
         </div>
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label">قســــــــــــــــــم الإدارة</span><span class="service-chip__desc">يـــــــــــــــقود اســـــــــــتراتيجيات الـــــتشغيل ويـــــــوجه الـــدفة الــــــــمالية ويـــــــــدير الطاقات نحو التوسع والنمو.</span></div>
-          <div class="service-chip"><span class="service-chip__label">قســـــــــــــــــم التقني</span><span class="service-chip__desc">يديــــــــــــــر الأنظمة البرمجية ويــــهندس مســارات العمل الرقـــــــــــــمية (Workflows) ويصون المنصات.</span></div>
-          <div class="service-chip"><span class="service-chip__label">المـــــــوارد البشرية</span><span class="service-chip__desc">يستـــقطب الــعقول المبدعة ويــــــنظم شــــــؤون الــــــفريق ويـــــدعم الــــــتطور الــــــمهني المستمر.</span></div>
-          <div class="service-chip"><span class="service-chip__label">العــــلاقات العامة</span><span class="service-chip__desc">يــــنسق الحـــضور الإعــــلامي للمؤسسة ويـــــــــبني شــــبكة تــــــحالفات خـــارجية قـــــــوية ومستدامة.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســــــــــــــــــم الإدارة</span><span class="t-d">قســـــــــــــم الإدارة</span></span><span class="service-chip__desc">يـــــــــــــــقود اســـــــــــتراتيجيات الـــــتشغيل ويـــــــوجه الـــدفة الــــــــمالية ويـــــــــدير الطاقات نحو التوسع والنمو.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــــم التقني</span><span class="t-d">قســــــــــــم التقني</span></span><span class="service-chip__desc">يديــــــــــــــر الأنظمة البرمجية ويــــهندس مســارات العمل الرقـــــــــــــمية (Workflows) ويصون المنصات.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">المـــــــوارد البشرية</span><span class="t-d">المـــوارد البشرية</span></span><span class="service-chip__desc">يستـــقطب الــعقول المبدعة ويــــــنظم شــــــؤون الــــــفريق ويـــــدعم الــــــتطور الــــــمهني المستمر.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">العــــلاقات العامة</span><span class="t-d">العلاقات العامة</span></span><span class="service-chip__desc">يــــنسق الحـــضور الإعــــلامي للمؤسسة ويـــــــــبني شــــبكة تــــــحالفات خـــارجية قـــــــوية ومستدامة.</span></div>
         </div>
       </div>
     </section>
@@ -1981,6 +2047,18 @@
         <a class="socials__link" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3Zm0 7.75a3.05 3.05 0 1 1 0-6.1 3.05 3.05 0 0 1 0 6.1Zm5.99-7.94a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM21.1 8.73c-.07-1.47-.4-2.77-1.48-3.84-1.07-1.07-2.37-1.4-3.84-1.48-1.51-.09-6.04-.09-7.55 0-1.47.07-2.77.4-3.84 1.48C3.32 5.96 3 7.26 2.92 8.73c-.09 1.51-.09 6.04 0 7.55.07 1.47.4 2.77 1.47 3.84 1.08 1.07 2.37 1.4 3.84 1.48 1.51.09 6.04.09 7.55 0 1.47-.07 2.77-.4 3.84-1.48 1.07-1.07 1.4-2.37 1.48-3.84.09-1.51.09-6.03 0-7.55Zm-1.96 9.17a3.09 3.09 0 0 1-1.74 1.74c-1.2.48-4.06.37-5.4.37-1.33 0-4.19.1-5.39-.37a3.09 3.09 0 0 1-1.74-1.74c-.48-1.2-.37-4.06-.37-5.4 0-1.33-.1-4.19.37-5.39A3.09 3.09 0 0 1 6.61 5.37c1.2-.48 4.06-.37 5.39-.37 1.34 0 4.2-.1 5.4.37a3.09 3.09 0 0 1 1.74 1.74c.48 1.2.37 4.06.37 5.39 0 1.34.11 4.2-.37 5.4Z"/></svg></a>
         <a class="socials__link" href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M22 5.9a8.2 8.2 0 0 1-2.36.65 4.12 4.12 0 0 0 1.8-2.27 8.22 8.22 0 0 1-2.6 1 4.1 4.1 0 0 0-7 3.74A11.65 11.65 0 0 1 3.4 4.73a4.1 4.1 0 0 0 1.27 5.48 4.07 4.07 0 0 1-1.86-.51v.05a4.1 4.1 0 0 0 3.29 4.02 4.1 4.1 0 0 1-1.85.07 4.11 4.11 0 0 0 3.83 2.85A8.24 8.24 0 0 1 2 18.4a11.62 11.62 0 0 0 6.29 1.84c7.55 0 11.68-6.25 11.68-11.67v-.53A8.3 8.3 0 0 0 22 5.9Z"/></svg></a>
       </div>
+
+      <!-- desktop: the seven networks as drawn on the artboard (1029:2950).
+           Links marked # are waiting on the client's real URLs. -->
+      <div class="socials--full" aria-label="روابط التواصل الاجتماعي">
+        <a href="#" aria-label="Facebook"><img src="img/social/facebook.svg" alt="" width="30" height="30" /></a>
+        <a href="#" aria-label="Instagram"><img src="img/social/instagram.svg" alt="" width="30" height="30" /></a>
+        <a href="#" aria-label="LinkedIn"><img src="img/social/linkedin.svg" alt="" width="30" height="30" /></a>
+        <a href="#" aria-label="YouTube"><img src="img/social/youtube.svg" alt="" width="30" height="30" /></a>
+        <a href="#" aria-label="Telegram"><img src="img/social/telegram.svg" alt="" width="30" height="30" /></a>
+        <a href="https://wa.me/9647748663366" aria-label="WhatsApp" target="_blank" rel="noopener"><img src="img/social/whatsapp.svg" alt="" width="30" height="30" /></a>
+        <a href="#" aria-label="TikTok"><img src="img/social/tiktok.svg" alt="" width="30" height="30" /></a>
+      </div>
     </section>
 
   </main>
@@ -2055,6 +2133,23 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { closeMenu(); }
     });
+  })();
+
+  /* ---- Rings: rise into place when their picture scrolls in ---- */
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var boxes = document.querySelectorAll('.media');
+    if (!boxes.length) return;
+    document.documentElement.classList.add('rings-armed');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.querySelectorAll('.ring').forEach(function (r) { r.classList.add('is-in'); });
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.2 });
+    boxes.forEach(function (b) { io.observe(b); });
   })();
 
   /* ---- Light / dark switch ---- */
