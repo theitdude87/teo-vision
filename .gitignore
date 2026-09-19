@@ -28,3 +28,7 @@ teo-vision.backup.html
 # OS noise
 Thumbs.db
 .DS_Store
+
+# The designer's original font files. Only the subset WOFF2 copies in site/fonts ship.
+/fonts/
+alfont_com_*.ttf
