@@ -44,6 +44,36 @@
     font-style: normal;
     font-display: swap;
   }
+  /* The designer's own files, supplied 2026-09-19. Subset to Arabic +
+     Latin and converted to WOFF2. Used by the desktop layout; the phone
+     layout still runs its tuned fallbacks until the mobile pass. */
+  @font-face {
+    font-family: "Ping AR + LT";
+    src: url("fonts/PingARLT-Light.woff2") format("woff2");
+    font-weight: 300; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "Ping AR + LT";
+    src: url("fonts/PingARLT-Regular.woff2") format("woff2");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "The Year of Handicrafts";
+    src: url("fonts/YearOfHandicrafts-Regular.woff2") format("woff2");
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: "The Year of Handicrafts";
+    src: url("fonts/YearOfHandicrafts-Bold.woff2") format("woff2");
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  /* one static cut; declared across the weight range so a heading asking
+     for 800 gets this file instead of a synthesised bold */
+  @font-face {
+    font-family: "zain pc v2 mob 800";
+    src: url("fonts/ZainPCv2Mob800.woff2") format("woff2");
+    font-weight: 100 900; font-style: normal; font-display: swap;
+  }
 </style>
 <style>
   /* ============================================================
@@ -1081,6 +1111,7 @@
      breakpoint picks one. Phone first: .t-d is hidden until >=900. */
   .t-d { display: none; }
   .socials--full { display: none; }
+  .call__halo, .call__quote, .call__cta, .call__divider { display: none; }
 
   /* ============================================================
      LAPTOP  (>=900)
@@ -1368,6 +1399,122 @@
     .rings-armed .call__media .ring > svg { animation-play-state: paused; }
     .rings-armed .call__media:hover .ring { translate: 0 0; opacity: 1; }
     .rings-armed .call__media:hover .ring > svg { animation-play-state: running; }
+
+    /* ---- Client review, 2026-09-19 -------------------------------- */
+    /* the designer's faces */
+    :root {
+      --font-display: "zain pc v2 mob 800", "Zain Mobile Swashes", "Zain", sans-serif;
+      --font-body: "Blinker", "Ping AR + LT", "Tajawal", sans-serif;
+      --font-decorative: "The Year of Handicrafts", "Ping AR + LT", sans-serif;
+    }
+    .heading, .hero__title { font-weight: 400; font-variation-settings: normal; }
+    .subtitle, .field__label { font-weight: 400; }
+    .hero__desc { font-family: "Blinker", "The Year of Handicrafts", sans-serif; font-weight: 400; color: rgba(153, 153, 153, 0.6); }
+    .vm-card__text { font-family: "Blinker", "Ping AR + LT", sans-serif; font-weight: 400; color: #dfdfdf; }
+    /* the artboard sets the two card titles in two different faces */
+    .vm-card--vision .vm-card__title { font-family: "The Year of Handicrafts", sans-serif; font-weight: 700; }
+    .vm-card--mission .vm-card__title { font-family: "Ping AR + LT", sans-serif; font-weight: 700; }
+    .service-chip__desc { font-family: "Ping AR + LT", sans-serif; font-weight: 300; white-space: nowrap; }
+    .nav__links a { font-family: "Cairo", sans-serif; }
+    .nav__links a.is-active { font-family: "Zain", sans-serif; }
+
+    /* Top bar: links sit at the RIGHT of the pill and the CTA alone at the
+       left, with the gap between them ("flex-end" meant left in RTL, which
+       had pushed the links against the button). No theme switch here — the
+       artboard has none. */
+    .nav__links { justify-content: flex-start; }
+    .nav .theme-toggle { display: none; }   /* beats the base rule, which sits later in the file */
+    .nav { gap: 51px; }
+
+    /* cards hug their text and centre on the television, as drawn — no
+       empty panel under the copy */
+    .vm-card { align-self: center; }
+
+    /* form: name on the right, email on the left; placeholder at the edge */
+    .contact__row { flex-direction: row-reverse; }
+    .field__textarea::placeholder { text-align: right; }
+
+    /* ---- التواصل, laid out as the artboard (1029:1810) ----
+       copy column on the right, the phone to its left, a divider under both */
+    .call {
+      display: grid;
+      grid-template-columns: 554px minmax(0, 1fr);
+      align-items: start;
+      column-gap: 48px;
+    }
+    /* RTL: flex-start is the RIGHT edge — the column hangs off the right, and
+       the 140px heading overhangs to the left across the phone, as drawn */
+    .call .story__head { grid-column: 1; grid-row: 1; width: 100%; align-items: flex-start; text-align: right; gap: 36px; }
+    .call .story__head > .body-text,
+    .call .story__caption { display: none; }
+    .call .subtitle { text-align: right; white-space: nowrap; }
+    .call__title-wrap { align-self: flex-start; justify-content: flex-start; margin-bottom: 12px; }
+    .call__title-wrap .heading { position: relative; z-index: 1; white-space: nowrap; }
+    .call__halo {
+      display: block;
+      position: absolute;
+      right: 555px;
+      top: -84px;
+      width: 354px;
+      height: 177px;
+      translate: 50% 0;
+      overflow: hidden;
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .call__halo svg { display: block; width: 354px; height: 354px; fill: var(--color-primary); }
+    .call__quote {
+      display: block;
+      font-family: "Blinker", "Ping AR + LT", sans-serif;
+      font-weight: 300;
+      font-size: var(--fs-caption-lg);
+      line-height: 1.6;
+      color: var(--color-text-lighter);
+      text-align: right;
+      white-space: nowrap;
+      margin: 0;
+    }
+    .call__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 164px;
+      height: 56px;
+      margin-top: 36px;
+      background: #1e6af7;
+      border: 1px solid rgba(127, 164, 204, 0.5);
+      border-radius: 24px;
+      color: #ffffff;
+      font-family: "Zain", sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .call__cta:hover, .call__cta:focus-visible { background: var(--color-accent-blue); }
+    .call__cta img { display: block; }
+    .call .call__media { grid-column: 2; grid-row: 1; width: 420px; margin: 0 auto; align-self: center; }
+    /* the artboard's phone waits off-stage and rises in on hover */
+    .rings-armed .call .call__media > img {
+      transition: translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.7s ease-out;
+      translate: 0 24px;
+      opacity: 0;
+    }
+    .rings-armed .call:hover .call__media > img { translate: 0 0; opacity: 1; }
+    .rings-armed .call:hover .call__media .ring { translate: 0 0; opacity: 1; }
+    .rings-armed .call:hover .call__media .ring > svg { animation-play-state: running; }
+    .call__divider {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      width: 100%;
+      margin-top: 48px;
+    }
+    .call__divider span { flex: 1 1 0; height: 1px; background: rgba(153, 153, 153, 0.6); }
+    .call__divider img { width: 48px; height: 48px; rotate: -30deg; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1830,10 +1977,10 @@
       <h2 class="heading heading--xl services__title"><span class="t-m">خــــــــــــــــدماتنا</span><span class="t-d">خــــــــــــــــــــــدماتنا</span></h2>
       <div class="services__grid">
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــم الإنتـــاج</span><span class="t-d">قســـــــــم الإنتـــاج</span></span><span class="service-chip__desc">يتولى الــــــــــــتجسيد البصري عبـــــــر المـــــــخرج، المصور، مــــــــهندس الصـــــوت وفني الإضاءة والمعدات.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــم الجودة</span><span class="t-d">قســــــــــم الجودة</span></span><span class="service-chip__desc">يصقل الهوية النهائيــــة عــبر المونتاج،التلوين،الســـينمائي, التصميم الصوتي والموشن غرافيك.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــــم الإبداع</span><span class="t-d">قســــــــــــم الإبداع</span></span><span class="service-chip__desc">يـــــــــضع حــــجر الأســــــــــاس للــــمشاريع بكتابة السكريبت وتــــــوليد الأفـــــــــــــكار ورسم الـ Storyboard.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــم التسويق</span><span class="t-d">قســــم التسويق</span></span><span class="service-chip__desc">يصـــــــــــــنع الأثــر رقمياً بإدارة السوشيال ميديا، الإعــــلانات الــممولة وتحــــليل الــــبيانات الاستراتيجية.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــم الإنتـــاج</span><span class="t-d">قســـــــــم الإنتـــاج</span></span><span class="service-chip__desc"><span class="t-m">يتولى الــــــــــــتجسيد البصري عبـــــــر المـــــــخرج، المصور، مــــــــهندس الصـــــوت وفني الإضاءة والمعدات.</span><span class="t-d">ينقل التجسيـد البصـــــــــــــــري<br>عبـر التحريك، التصــــــــــــــــــوير،<br>المونتاج الصوتي.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــم الجودة</span><span class="t-d">قســــــــــم الجودة</span></span><span class="service-chip__desc"><span class="t-m">يصقل الهوية النهائيــــة عــبر المونتاج،التلوين،الســـينمائي, التصميم الصوتي والموشن غرافيك.</span><span class="t-d">يعيـــــــــــــــــــــد المـــــــــعاينة عبر<br>المونتاج، اللون، الســـــــــلاسة،<br>والتصميم الصوتي.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــــم الإبداع</span><span class="t-d">قســــــــــــم الإبداع</span></span><span class="service-chip__desc"><span class="t-m">يـــــــــضع حــــجر الأســــــــــاس للــــمشاريع بكتابة السكريبت وتــــــوليد الأفـــــــــــــكار ورسم الـ Storyboard.</span><span class="t-d">يضع حجر الأساس للمشاريع<br>بكتـــــــــــــــابة السكريبت وتوليد<br>الأفكار ورسم الـStoryboard</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــم التسويق</span><span class="t-d">قســــم التسويق</span></span><span class="service-chip__desc"><span class="t-m">يصـــــــــــــنع الأثــر رقمياً بإدارة السوشيال ميديا، الإعــــلانات الــممولة وتحــــليل الــــبيانات الاستراتيجية.</span><span class="t-d">يصـــنع الأثر ويقـــــود الجمهور<br>للاهتمام، من خلال حمــلات<br>مدروسة وإدارة مؤثرة.</span></span></div>
         </div>
 
         <div class="services__media media">
@@ -1846,16 +1993,16 @@
         </div>
 
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">إدارة العــــــــــــــملاء</span><span class="t-d">إدارة العمـــــــــــلاء</span></span><span class="service-chip__desc">يــــــــــــــضمن الـــــــولاء بإدارة الـــــــــــــمشاريع واســــــتيعاب الرؤيــــــــــــــــــــــة وتأمـــــــــــــين التسليمات.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــم المبيعات</span><span class="t-d">قســم المبيعات</span></span><span class="service-chip__desc">يـــــغلق الصـــــــــفقات الذكية ببناء عــلاقـــــــــات متــــــــــينة وتقديـــــم عــروض تــــجارية جذابة.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــم الـبراندنك</span><span class="t-d">قســــم البراندنك</span></span><span class="service-chip__desc">يبــــــــــني شـخصيـة العـــــلامة الفريــــــــدة ويـصمم بصمتها المرئيـــــــــة ويـــــوحد نــــــــــبرة المحتوى.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">البحث والــــــــتطوير</span><span class="t-d">البحث والتـطـوير</span></span><span class="service-chip__desc">يقتنص التــــــــــوجهات ويبــتكر أساليب تــــــــصوير حـــــــــــديثة ويدمج الذكاء الاصطناعي(AI) لمواكبة سوق العمل.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">إدارة العــــــــــــــملاء</span><span class="t-d">إدارة العمـــــــــــلاء</span></span><span class="service-chip__desc"><span class="t-m">يــــــــــــــضمن الـــــــولاء بإدارة الـــــــــــــمشاريع واســــــتيعاب الرؤيــــــــــــــــــــــة وتأمـــــــــــــين التسليمات.</span><span class="t-d">تضمـــــن الوقـــــــــــــــوف بإدارة<br>اســــتباقية واستيـــــــــــــــــــــعاب<br>التسليمات.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــم المبيعات</span><span class="t-d">قســم المبيعات</span></span><span class="service-chip__desc"><span class="t-m">يـــــغلق الصـــــــــفقات الذكية ببناء عــلاقـــــــــات متــــــــــينة وتقديـــــم عــروض تــــجارية جذابة.</span><span class="t-d">يصــــــــــنع الصفقــــــات الذكية<br>ويفتــــــح آفاق تجــــــــــــــــــــارية<br>جاذبة.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــم الـبراندنك</span><span class="t-d">قســــم البراندنك</span></span><span class="service-chip__desc"><span class="t-m">يبــــــــــني شـخصيـة العـــــلامة الفريــــــــدة ويـصمم بصمتها المرئيـــــــــة ويـــــوحد نــــــــــبرة المحتوى.</span><span class="t-d">يبني شخصــــــــــــــــــــية العلامة<br>التجاريـــــــة ويوضح هويتـــــــها<br>داخل السوق.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">البحث والــــــــتطوير</span><span class="t-d">البحث والتـطـوير</span></span><span class="service-chip__desc"><span class="t-m">يقتنص التــــــــــوجهات ويبــتكر أساليب تــــــــصوير حـــــــــــديثة ويدمج الذكاء الاصطناعي(AI) لمواكبة سوق العمل.</span><span class="t-d">نحــــــلل التجـــــــــــربة ونبتـــــــكر<br>حلولاً تعتمـــــــــــــد على التقنية<br>والذكاء الاصطناعي.</span></span></div>
         </div>
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســــــــــــــــــم الإدارة</span><span class="t-d">قســـــــــــــم الإدارة</span></span><span class="service-chip__desc">يـــــــــــــــقود اســـــــــــتراتيجيات الـــــتشغيل ويـــــــوجه الـــدفة الــــــــمالية ويـــــــــدير الطاقات نحو التوسع والنمو.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــــم التقني</span><span class="t-d">قســــــــــــم التقني</span></span><span class="service-chip__desc">يديــــــــــــــر الأنظمة البرمجية ويــــهندس مســارات العمل الرقـــــــــــــمية (Workflows) ويصون المنصات.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">المـــــــوارد البشرية</span><span class="t-d">المـــوارد البشرية</span></span><span class="service-chip__desc">يستـــقطب الــعقول المبدعة ويــــــنظم شــــــؤون الــــــفريق ويـــــدعم الــــــتطور الــــــمهني المستمر.</span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">العــــلاقات العامة</span><span class="t-d">العلاقات العامة</span></span><span class="service-chip__desc">يــــنسق الحـــضور الإعــــلامي للمؤسسة ويـــــــــبني شــــبكة تــــــحالفات خـــارجية قـــــــوية ومستدامة.</span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســــــــــــــــــم الإدارة</span><span class="t-d">قســـــــــــــم الإدارة</span></span><span class="service-chip__desc"><span class="t-m">يـــــــــــــــقود اســـــــــــتراتيجيات الـــــتشغيل ويـــــــوجه الـــدفة الــــــــمالية ويـــــــــدير الطاقات نحو التوسع والنمو.</span><span class="t-d">يقـــــــــود استراتيجـــــــــــــــــــيات<br>التخطيط، المالية، وتنظيــــــــم<br>نمو المؤسسة.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــــم التقني</span><span class="t-d">قســــــــــــم التقني</span></span><span class="service-chip__desc"><span class="t-m">يديــــــــــــــر الأنظمة البرمجية ويــــهندس مســارات العمل الرقـــــــــــــمية (Workflows) ويصون المنصات.</span><span class="t-d">يبني الأنظمة البرمجــــــــــــــــــية<br>ويصمم مسارات العمــــــــــــل<br>الرقمية.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">المـــــــوارد البشرية</span><span class="t-d">المـــوارد البشرية</span></span><span class="service-chip__desc"><span class="t-m">يستـــقطب الــعقول المبدعة ويــــــنظم شــــــؤون الــــــفريق ويـــــدعم الــــــتطور الــــــمهني المستمر.</span><span class="t-d">يستقطب العقـــــــول المبدعة<br>ويصمم بيئة عمــــــل تدفـــــــع<br>للتطور المهني.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label"><span class="t-m">العــــلاقات العامة</span><span class="t-d">العلاقات العامة</span></span><span class="service-chip__desc"><span class="t-m">يــــنسق الحـــضور الإعــــلامي للمؤسسة ويـــــــــبني شــــبكة تــــــحالفات خـــارجية قـــــــوية ومستدامة.</span><span class="t-d">يصـــــــــــــــنع الحضور الإعلامي<br>للمؤسسة ويوثق علاقــــــــــات<br>خارجية قوية.</span></span></div>
         </div>
       </div>
     </section>
@@ -1935,12 +2082,18 @@
     </section>
 
     <!-- ========================== CALL / التواصل ========================== -->
-    <section class="story section" aria-label="التواصل">
+    <section class="story section call" aria-label="التواصل">
       <div class="story__head story__head--tight">
         <div class="call__title-wrap">
+          <!-- desktop: the half sunburst the artboard sets over the heading -->
+          <span class="call__halo" aria-hidden="true"><svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg></span>
           <h2 class="heading heading--lg">التواصل</h2>
         </div>
-        <p class="subtitle subtitle--muted">مكالمة واحــدة... قــــد تـــكون بدايــة كـــــــــــــل شـــــيء</p>
+        <p class="subtitle subtitle--muted"><span class="t-m">مكالمة واحــدة... قــــد تـــكون بدايــة كـــــــــــــل شـــــيء</span><span class="t-d">مـــــكالمة واحـــــدة... قـــــــــد تــــــــــكون بـــــــداية كــــــــــــــل شيء</span></p>
+        <!-- desktop copy, from the artboard (1029:1814): a two-line quote and a
+             button in place of the two paragraphs the phone layout carries -->
+        <p class="call__quote" dir="rtl">الشركـــــــــات التي تـــــــــــــملك الانـــــــــــــتباه تـــــــملك الـــــــــتأثير<br>و الشركات التي تملك التأثير تملك النمو</p>
+        <a class="call__cta" href="#contact"><img src="img/icon-arrow-left.svg" alt="" width="24" height="24" /><span>تواصل معنا</span></a>
         <p class="body-text" dir="rtl">مثــل الـــهاتف الــذي صُـمم ليختصر المسافات ويـقرب الأشخاص، فإن التواصل الفعّال لا يقتصر على تبادل الكلمات، بـــــــل على بناء جـسور من الثقة والفهم والتعاون، ففي عالـم الأعمــال لا تبدأ الــنجاحات مــن الــعقود أو الاجــتماعات، بـــل من لــحظة تواصل صـادقة تُفهم فـــيها الاحتياجات وتُبنى فيها العلاقـات، ولـــهذا نؤمــن أن كــــل رسالــــة وكــل مــكالمة وكـــل استفسار يحمل فرصة جديدة للنمو وصناعة قيمة حقيقية.</p>
       </div>
 
@@ -1954,6 +2107,10 @@
 
       <div class="story__caption">
         <p class="body-text" dir="rtl">فكــل مـــشروع ناجح يبدأ بحـــــوار، وكــــل شــراكة قوية تبدأ بفهم، وكل فكرة عظيمة تبدأ بتواصل واضــح. لـــذلك نـــحرص على أن تكـون قنوات التواصـــل معنا سريعــة، مـــرنة، وفعالة لنكون أقرب إلى احتياجاتك في كل خطوة من رحلتك.</p>
+      </div>
+
+      <div class="call__divider" aria-hidden="true">
+        <span></span><img src="img/divider-mark.svg" alt="" width="48" height="48" /><span></span>
       </div>
     </section>
 
@@ -1990,7 +2147,7 @@
         </div>
 
         <div class="field field--full">
-          <label class="field__label" for="message">اكتب الرسالة</label>
+          <label class="field__label" for="message"><span class="t-m">اكتب الرسالة</span><span class="t-d">موضوع الرسالة</span></label>
           <textarea class="field__textarea" id="message" dir="rtl" placeholder="الرسالة"></textarea>
         </div>
 
