@@ -1495,8 +1495,26 @@
     }
     .call__cta:hover, .call__cta:focus-visible { background: var(--color-accent-blue); }
     .call__cta img { display: block; }
-    .call .call__media { grid-column: 2; grid-row: 1; width: 420px; margin: 0 auto; align-self: center; }
+    /* flush to the far left of its column (justify-self:end is LEFT in an
+       RTL grid), so the heading's overhang clears it — centred, the phone
+       ran into "التواصل" */
+    .call .call__media { grid-column: 2; grid-row: 1; width: 420px; margin: 0; justify-self: end; align-self: center; }
     /* the artboard's phone waits off-stage and rises in on hover */
+    /* Keep the top bar on screen. The nav was already sticky, but sticky
+       was cancelled twice: it lives inside a <header> no taller than itself,
+       and .page's overflow-x:hidden made .page its own scroll box. `clip`
+       crops the same way without creating one, and the whole header sticks. */
+    .page { overflow-x: clip; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--color-page);
+      padding-bottom: 12px;
+    }
+    .nav { position: relative; top: 0; }
+    html { scroll-padding-top: 120px; }   /* anchor jumps land below the bar */
+
     .rings-armed .call .call__media > img {
       transition: translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.7s ease-out;
       translate: 0 24px;
