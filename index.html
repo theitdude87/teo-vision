@@ -1504,7 +1504,8 @@
        was cancelled twice: it lives inside a <header> no taller than itself,
        and .page's overflow-x:hidden made .page its own scroll box. `clip`
        crops the same way without creating one, and the whole header sticks. */
-    .page { overflow-x: clip; }
+    .page { overflow-x: visible; }
+    html { overflow-x: clip; }
     header {
       position: sticky;
       top: 0;
@@ -1533,6 +1534,52 @@
     }
     .call__divider span { flex: 1 1 0; height: 1px; background: rgba(153, 153, 153, 0.6); }
     .call__divider img { width: 48px; height: 48px; rotate: -30deg; }
+
+    /* ---- Client review, 2026-10-10 -------------------------------- */
+    /* Every section photograph runs the full width of the page on the
+       artboard — image 33 and image 37, Two man The laptop and the ads
+       Picture are all 1440 against a 1440 frame, image 27 is 1538 — and
+       the banner under a picture runs with it. */
+    .story__media,
+    .story__media[style],
+    .ads,
+    .story > .ads__banner {
+      /* --vw is the page width without the scrollbar, set by the script;
+         100vw includes it and would overflow by ~8px */
+      width: var(--vw, 100vw) !important;
+      max-width: none;
+      margin-left: calc(50% - var(--vw, 100vw) / 2);
+      margin-right: calc(50% - var(--vw, 100vw) / 2);
+    }
+    .story__media, .story__media[style] { margin-top: 16px; }
+    .story > .ads__banner { padding: 16px 24px; }
+    /* the phone is not one of those pictures */
+    .call .call__media { width: 420px !important; max-width: 420px; margin: 0; }
+
+    /* Body copy back to the artboard's own size and block widths — those
+       are what set the number of lines the designer is counting. The text
+       is justified in the file, which it already is here. */
+    :root { --fs-subtitle: 34px; }
+    .body-text, .story__caption .body-text { font-size: 30px; max-width: 1312px; }
+    .story__caption { max-width: 1312px; }
+    #clients .story__head .body-text { max-width: 1107px; }   /* 4 lines */
+    #behind  .story__head .body-text { max-width: 1312px; }   /* 4 lines */
+    #ads     .story__head .body-text { max-width: 1179px; }   /* 5 lines */
+    #content .story__head .body-text { max-width: 1314px; }   /* 6 lines */
+    #works   .story__head .body-text { max-width: 1294px; }   /* 4 lines */
+    #behind  .story__caption .body-text { max-width: 1312px; }
+    #ads     .story__caption .body-text { max-width: 1153px; }
+    #clients .story__caption .body-text { max-width: 1111px; }
+    .caption-accent { font-size: 56px; max-width: 1111px; }   /* artboard: one line, 90 tall */
+    .subtitle--ads { font-size: 47px; }                        /* artboard: 75 tall */
+
+    /* the artboard sets these two lines big and blue over the picture, not
+       as a small bar (I1098:9852;1097:9729 and the ads twin: 1121 wide, 90 tall) */
+    .ads__banner { font-size: 56px; padding: 24px; }
+    #content .story__caption .body-text { font-size: 34px; max-width: 1312px; }
+
+    /* the underline follows the section you are in (see the script) */
+    .nav__links a { transition: color 0.2s ease; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -2078,7 +2125,7 @@
       <div class="story__head story__head--tight">
         <h2 class="heading heading--lg">المحتوى</h2>
         <p class="subtitle">بين صفــحة تُقــرأ وفــــكرة تـــولد... تبدأ رحلة المحتوى</p>
-        <p class="body-text" dir="rtl">فالــمعرفة لا تـــمنحنا الـــمعلومات فقط، بـــل تمنحنا الــقدرة على فـهم الناس، وتـحليل سلوكهم، واكــتشاف ما يــــجذب انتباههم ومـــــا يبقى عالقاً في ذاكرتهم. نحن لا نبني الإعلانات على التخمين، بل على المعرفة والرؤية، لأن كـــل حـــملة ناجحـــة تبدأ بفهــم أعمق للجمهور، وكل محتوى مؤثر يبدأ بفكرة مدروسة تعرف كيف تـصل، ومتى تتــحدث، ولـــماذا تُــــــسمـع. فـــكما تــــمنح الــــــكــتب أصحابها منظوراً أوسع للعالم، تمنـحنا المعرفة القدرة على صــــناعة إعـــلانات نتجاوز المشاهدة، لتصنع تأثيراً حقيقياً.</p>
+        <p class="body-text" dir="rtl"><span class="t-m">فالــمعرفة لا تـــمنحنا الـــمعلومات فقط، بـــل تمنحنا الــقدرة على فـهم الناس، وتـحليل سلوكهم، واكــتشاف ما يــــجذب انتباههم ومـــــا يبقى عالقاً في ذاكرتهم. نحن لا نبني الإعلانات على التخمين، بل على المعرفة والرؤية، لأن كـــل حـــملة ناجحـــة تبدأ بفهــم أعمق للجمهور، وكل محتوى مؤثر يبدأ بفكرة مدروسة تعرف كيف تـصل، ومتى تتــحدث، ولـــماذا تُــــــسمـع. فـــكما تــــمنح الــــــكــتب أصحابها منظوراً أوسع للعالم، تمنـحنا المعرفة القدرة على صــــناعة إعـــلانات نتجاوز المشاهدة، لتصنع تأثيراً حقيقياً.</span><span class="t-d">فالمعـــــــــــرفة لا تمنحنـــا المعلومــــــــــات فقـط، بـــــل تمـــــــنحنا الــــــقدرة على فهــــــم الناس، وتحليـــــــل سلــــــوكهم، واكـتــــــــشاف ما يـــــــجذب انتباههــــــم ومـــا يبقى عالقــاً في ذاكرتـــــــــــــهم. نحـــن لا نــــبني الإعلانــــــات على الــــتخمين، بـــــل على الـــــــمعرفة والـــــــرؤية، لأن كـــــــــــل حـــــــملة ناجحـــة تبدأ بـــــــفهم أعمق للـــــجمهور، وكــــــل محتوى مؤثر يبـــدأ بفــكرة مدروســـــــــة تعـــــــرف كــــــــيف تصـــل، ومــــتى تتحــــــــدث، ولـــــــــــــماذا تُسمــــــــع. فكمـــا تمنـــح الكــــتب أصحابهـا منظوراً أوســــــــــع للــــــعالم، تــمنحنا الـمعرفة الــقدرة على صــناعة إعــــلانـات نتـــجاوز المــشاهدة، لــــــتصنع تأثيراً حقيقياً.</span></p>
       </div>
 
       <div class="story__media media story__media--hover" style="width:360px;">
@@ -2325,6 +2372,47 @@
       });
     }, { threshold: 0.2 });
     boxes.forEach(function (b) { io.observe(b); });
+  })();
+
+  /* ---- The page width without the scrollbar, for the full-bleed blocks ---- */
+  (function () {
+    function set() {
+      document.documentElement.style.setProperty('--vw', document.documentElement.clientWidth + 'px');
+    }
+    set();
+    window.addEventListener('resize', set);
+  })();
+
+  /* ---- Nav: the white underline follows the section you are in ---- */
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.nav__links a[href^="#"]'));
+    if (!links.length) return;
+    var pairs = links.map(function (a) {
+      return { link: a, section: document.querySelector(a.getAttribute('href')) };
+    }).filter(function (p) { return p.section; });
+    if (!pairs.length) return;
+
+    function mark(link) {
+      links.forEach(function (a) { a.classList.toggle('is-active', a === link); });
+    }
+    links.forEach(function (a) {
+      a.addEventListener('click', function () { mark(a); });
+    });
+
+    if (!('IntersectionObserver' in window)) return;
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0;
+      });
+      var best = null, bestRatio = 0;
+      pairs.forEach(function (p) {
+        var r = seen[p.section.id] || 0;
+        if (r > bestRatio) { bestRatio = r; best = p.link; }
+      });
+      if (best) mark(best);
+    }, { threshold: [0, 0.15, 0.35, 0.6, 0.9], rootMargin: '-120px 0px -35% 0px' });
+    pairs.forEach(function (p) { io.observe(p.section); });
   })();
 
   /* ---- Light / dark switch ---- */
