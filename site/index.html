@@ -22,7 +22,17 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Zain:wght@300;400;700;800;900&family=Cairo:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<!-- The laptop paints in the designer's faces. Preloading them (and asking
+     Google for display=block) means the first paint is already in the right
+     type instead of showing the fallbacks for a moment and swapping.
+     media= keeps the phone, which uses none of these, from fetching them. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/ZainPCv2Mob800.woff2" media="(min-width: 900px)" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PingARLT-Regular.woff2" media="(min-width: 900px)" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PingARLT-Light.woff2" media="(min-width: 900px)" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PingARLT-Bold.woff2" media="(min-width: 900px)" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/YearOfHandicrafts-Regular.woff2" media="(min-width: 900px)" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/YearOfHandicrafts-Bold.woff2" media="(min-width: 900px)" />
+<link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Zain:wght@300;400;700;800;900&family=Cairo:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=block" rel="stylesheet" />
 <style>
   /* The artboard's own Arabic face. Only the Bold weight is licensed here, so
      it is declared at 700 alone — text set lighter than that falls through to
@@ -50,29 +60,29 @@
   @font-face {
     font-family: "Ping AR + LT";
     src: url("fonts/PingARLT-Light.woff2") format("woff2");
-    font-weight: 300; font-style: normal; font-display: swap;
+    font-weight: 300; font-style: normal; font-display: block;
   }
   @font-face {
     font-family: "Ping AR + LT";
     src: url("fonts/PingARLT-Regular.woff2") format("woff2");
-    font-weight: 400; font-style: normal; font-display: swap;
+    font-weight: 400; font-style: normal; font-display: block;
   }
   @font-face {
     font-family: "The Year of Handicrafts";
     src: url("fonts/YearOfHandicrafts-Regular.woff2") format("woff2");
-    font-weight: 400; font-style: normal; font-display: swap;
+    font-weight: 400; font-style: normal; font-display: block;
   }
   @font-face {
     font-family: "The Year of Handicrafts";
     src: url("fonts/YearOfHandicrafts-Bold.woff2") format("woff2");
-    font-weight: 700; font-style: normal; font-display: swap;
+    font-weight: 700; font-style: normal; font-display: block;
   }
   /* one static cut; declared across the weight range so a heading asking
      for 800 gets this file instead of a synthesised bold */
   @font-face {
     font-family: "zain pc v2 mob 800";
     src: url("fonts/ZainPCv2Mob800.woff2") format("woff2");
-    font-weight: 100 900; font-style: normal; font-display: swap;
+    font-weight: 100 900; font-style: normal; font-display: block;
   }
 </style>
 <style>
