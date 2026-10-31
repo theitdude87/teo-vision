@@ -1154,9 +1154,6 @@
   /* Where the desktop artboard words something differently from the
      phone (same text, different kashida), both versions ship and the
      breakpoint picks one. Phone first: .t-d is hidden until >=900. */
-  /* One set of strings for both: the reviewed, unstretched wording. */
-  .t-m { display: none; }
-  .t-d { display: inline; }
   .socials--full { display: none; }
   .call__halo, .call__quote, .call__cta, .call__divider { display: none; }
 
@@ -1208,10 +1205,6 @@
       box-sizing: border-box;
     }
     html { overflow-x: clip; scroll-padding-top: 116px; }
-
-    /* desktop wording where it differs from the phone's */
-    .t-m { display: none; }
-    .t-d { display: inline; }
 
     /* ---------- typography ---------- */
     .heading, .hero__title { font-weight: 400; font-variation-settings: normal; line-height: 1.15; }
@@ -1930,13 +1923,13 @@
     <section class="hero section" id="hero" aria-label="من نحن">
       <div class="hero__head">
         <div class="hero__title-wrap">
-          <h1 class="hero__title"><span class="t-m">مــن نحـن</span><span class="t-d">من نحن</span></h1>
+          <h1 class="hero__title">من نحن</h1>
           <span class="hero__underline" aria-hidden="true">
             <img src="img/hero-swash.webp" alt="" />
           </span>
         </div>
         <p class="hero__desc" dir="rtl">
-          <span class="t-m">Teo Vision ليست مجرد شركة تسويق أو إنتاج بصـري بل هــي Production House &amp; Marketing Agency تـــجـــمع بــين الإبـــداع الاســتراتيجي، والتقنيـــة لـــصناعــة محـــتـوى يـــترك أثرًا حقيقيًا.</span><span class="t-d">Teo Vision ليست مجرد شركة تسويق أو إنتاج بصري بل هي Production House &amp; Marketing Agency تجمع بين الإبداع الاستراتيجي، والتقنية لصناعة محتوى يترك أثرًا حقيقيًا.</span>
+          Teo Vision ليست مجرد شركة تسويق أو إنتاج بصري بل هي Production House &amp; Marketing Agency تجمع بين الإبداع الاستراتيجي، والتقنية لصناعة محتوى يترك أثرًا حقيقيًا.
         </p>
       </div>
 
@@ -1963,12 +1956,12 @@
 
       <div class="hero__vm">
         <article class="vm-card vm-card--vision">
-          <h3 class="vm-card__title"><span class="t-m">رؤيـــــــــتـنـا</span><span class="t-d">رؤيتنا</span></h3>
-          <p class="vm-card__text" dir="rtl"><span class="t-m">نسعى لأن نكون الشريك الإبداعي الأول للعلامات التجارية والشركات، من خــلال دمــج الإنتـــاج الإعـــلامي، والتسويق، والـــتقنيات الحـــديـثة، لصناعة تجارب بصرية وحلول تسويقية تتجاوز التوقعات.</span><span class="t-d">نسعى لأن نكون الشريك الإبداعي الأول للعلامات التجارية والشركات، من خلال دمج الإنتاج الإعلامي، والتسويق، والتقنيات الحديثة، لصناعة تجارب بصرية وحلول تسويقية تتجاوز التوقعات.</span></p>
+          <h3 class="vm-card__title">رؤيتنا</h3>
+          <p class="vm-card__text" dir="rtl">نسعى لأن نكون الشريك الإبداعي الأول للعلامات التجارية والشركات، من خلال دمج الإنتاج الإعلامي، والتسويق، والتقنيات الحديثة، لصناعة تجارب بصرية وحلول تسويقية تتجاوز التوقعات.</p>
         </article>
         <article class="vm-card vm-card--mission">
-          <h3 class="vm-card__title"><span class="t-m">رســـالتـنـا</span><span class="t-d">رسالتنا</span></h3>
-          <p class="vm-card__text" dir="rtl"><span class="t-m">نحوّل الأفكار إلى تجارب بصرية وحــلول تــسويقية تـصنع فرقًا حقيقيًا. من خلال الإبداع، والإنتاج، والـــــتسويق، نساعد العلامات التجارية على بناء هويتها والوصول إلى جمهورها بوضوح وتأثير حقيقي.</span><span class="t-d">نحوّل الأفكار إلى تجارب بصرية وحلول تسويقية تصنع فرقًا حقيقيًا. من خلال الإبداع، والإنتاج، والتسويق، نساعد العلامات التجارية على بناء هويتها والوصول إلى جمهورها بوضوح وتأثير حقيقي.</span></p>
+          <h3 class="vm-card__title">رسالتنا</h3>
+          <p class="vm-card__text" dir="rtl">نحوّل الأفكار إلى تجارب بصرية وحلول تسويقية تصنع فرقًا حقيقيًا. من خلال الإبداع، والإنتاج، والتسويق، نساعد العلامات التجارية على بناء هويتها والوصول إلى جمهورها بوضوح وتأثير حقيقي.</p>
         </article>
       </div>
 
@@ -2054,10 +2047,10 @@
     <section class="story section" id="clients" aria-label="عملاؤنا">
       <div class="story__head">
         <div class="story__title-group">
-          <h2 class="heading heading--xl"><span class="t-m">عملاؤنـــــــــــــــا</span><span class="t-d">عملاؤنا</span></h2>
-          <p class="subtitle"><span class="t-m">وراء كل مصافحة... فــرصة لبناء قصة نجاح جـديـدة</span><span class="t-d">وراء كل مصافحة... فرصة لبناء قصة نجاح جديدة</span></p>
+          <h2 class="heading heading--xl">عملاؤنا</h2>
+          <p class="subtitle">وراء كل مصافحة... فرصة لبناء قصة نجاح جديدة</p>
         </div>
-        <p class="body-text" dir="rtl"><span class="t-m">فالمصافحة ليست مجرد لقاء بين يدين، بل وعد بالتعاون، والتزام بتحقيق الأهداف، وإيمان برحلة نجاح مشتركة. في TEO Vision Agency، لا ننظر إلى عملائنا كأرقام أو مشاريع مؤقتة،بل كشركاء في قصة نجاح نبنيها معاً. نستمع إلى رؤيتهم، نفهم طموحاتهم، ونعمل على تحويل أفكارهم إلى نتائج ملموسة تترك أثـــــراً حـــقيقياً؛ لأن نجاح عـــملائنا هو الــمعيار الحقيقي لنجاحنا.</span><span class="t-d">فالمصافحة ليست مجرد لقاء بين يدين، بل وعد بالتعاون، والتزام بتحقيق الأهداف، وإيمان برحلة نجاح مشتركة. في TEO Vision Agency، لا ننظر إلى عملائنا كأرقام أو مشاريع مؤقتة،بل كشركاء في قصة نجاح نبنيها معاً. نستمع إلى رؤيتهم، نفهم طموحاتهم، ونعمل على تحويل أفكارهم إلى نتائج ملموسة تترك أثراً حقيقياً؛ لأن نجاح عملائنا هو المعيار الحقيقي لنجاحنا.</span></p>
+        <p class="body-text" dir="rtl">فالمصافحة ليست مجرد لقاء بين يدين، بل وعد بالتعاون، والتزام بتحقيق الأهداف، وإيمان برحلة نجاح مشتركة. في TEO Vision Agency، لا ننظر إلى عملائنا كأرقام أو مشاريع مؤقتة،بل كشركاء في قصة نجاح نبنيها معاً. نستمع إلى رؤيتهم، نفهم طموحاتهم، ونعمل على تحويل أفكارهم إلى نتائج ملموسة تترك أثراً حقيقياً؛ لأن نجاح عملائنا هو المعيار الحقيقي لنجاحنا.</p>
       </div>
 
       <div class="story__media media media--box media--handshake">
@@ -2071,19 +2064,19 @@
 
       <div class="story__caption">
         <p class="caption-accent">العلاقات القوية لا تُبنى بالعقود فقط... بل بالثقة</p>
-        <p class="body-text" dir="rtl"><span class="t-m">فكــــل مـــــــشروع ناجــح يبدأ بـــفهم متبادل، وتــواصل واضــــح، والــتزام مستمر بتحقيق أفضل النتائــج. ولـــهذا نـــؤمن أن الــعميل لـــيس مـــجرد مـــتلقٍ للـخدمة، بل شريك في كل خطوة من رحلة النجاح.</span><span class="t-d">فكل مشروع ناجح يبدأ بفهم متبادل، وتواصل واضح، والتزام مستمر بتحقيق أفضل النتائج. ولهذا نؤمن أن العميل ليس مجرد متلقٍ للخدمة، بل شريك في كل خطوة من رحلة النجاح.</span></p>
+        <p class="body-text" dir="rtl">فكل مشروع ناجح يبدأ بفهم متبادل، وتواصل واضح، والتزام مستمر بتحقيق أفضل النتائج. ولهذا نؤمن أن العميل ليس مجرد متلقٍ للخدمة، بل شريك في كل خطوة من رحلة النجاح.</p>
       </div>
     </section>
 
     <!-- ========================== SERVICES GRID ========================== -->
     <section class="story section" id="services" aria-label="خدماتنا">
-      <h2 class="heading heading--xl services__title"><span class="t-m">خــــــــــــــــدماتنا</span><span class="t-d">خدماتنا</span></h2>
+      <h2 class="heading heading--xl services__title">خدماتنا</h2>
       <div class="services__grid">
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــم الإنتـــاج</span><span class="t-d">قسم الإنتاج</span></span><span class="service-chip__desc"><span class="t-m">يتولى الــــــــــــتجسيد البصري عبـــــــر المـــــــخرج، المصور، مــــــــهندس الصـــــوت وفني الإضاءة والمعدات.</span><span class="t-d">ينقل التجسيد البصري عبر التحريك، التصوير، المونتاج الصوتي.</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــم الجودة</span><span class="t-d">قسم الجودة</span></span><span class="service-chip__desc"><span class="t-m">يصقل الهوية النهائيــــة عــبر المونتاج،التلوين،الســـينمائي, التصميم الصوتي والموشن غرافيك.</span><span class="t-d">يعيد المعاينة عبر المونتاج، اللون، السلاسة، والتصميم الصوتي.</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــــم الإبداع</span><span class="t-d">قسم الإبداع</span></span><span class="service-chip__desc"><span class="t-m">يـــــــــضع حــــجر الأســــــــــاس للــــمشاريع بكتابة السكريبت وتــــــوليد الأفـــــــــــــكار ورسم الـ Storyboard.</span><span class="t-d">يضع حجر الأساس للمشاريع بكتابة السكريبت وتوليد الأفكار ورسم الStoryboard</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــم التسويق</span><span class="t-d">قسم التسويق</span></span><span class="service-chip__desc"><span class="t-m">يصـــــــــــــنع الأثــر رقمياً بإدارة السوشيال ميديا، الإعــــلانات الــممولة وتحــــليل الــــبيانات الاستراتيجية.</span><span class="t-d">يصنع الأثر ويقود الجمهور للاهتمام، من خلال حملات مدروسة وإدارة مؤثرة.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label">قسم الإنتاج</span><span class="service-chip__desc">ينقل التجسيد البصري عبر التحريك، التصوير، المونتاج الصوتي.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قسم الجودة</span><span class="service-chip__desc">يعيد المعاينة عبر المونتاج، اللون، السلاسة، والتصميم الصوتي.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قسم الإبداع</span><span class="service-chip__desc">يضع حجر الأساس للمشاريع بكتابة السكريبت وتوليد الأفكار ورسم الStoryboard</span></div>
+          <div class="service-chip"><span class="service-chip__label">قسم التسويق</span><span class="service-chip__desc">يصنع الأثر ويقود الجمهور للاهتمام، من خلال حملات مدروسة وإدارة مؤثرة.</span></div>
         </div>
 
         <div class="services__media media">
@@ -2096,16 +2089,16 @@
         </div>
 
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">إدارة العــــــــــــــملاء</span><span class="t-d">إدارة العملاء</span></span><span class="service-chip__desc"><span class="t-m">يــــــــــــــضمن الـــــــولاء بإدارة الـــــــــــــمشاريع واســــــتيعاب الرؤيــــــــــــــــــــــة وتأمـــــــــــــين التسليمات.</span><span class="t-d">تضمن الوقوف بإدارة استباقية واستيعاب التسليمات.</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــم المبيعات</span><span class="t-d">قسم المبيعات</span></span><span class="service-chip__desc"><span class="t-m">يـــــغلق الصـــــــــفقات الذكية ببناء عــلاقـــــــــات متــــــــــينة وتقديـــــم عــروض تــــجارية جذابة.</span><span class="t-d">يصنع الصفقات الذكية ويفتح آفاق تجارية جاذبة.</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــم الـبراندنك</span><span class="t-d">قسم البراندنك</span></span><span class="service-chip__desc"><span class="t-m">يبــــــــــني شـخصيـة العـــــلامة الفريــــــــدة ويـصمم بصمتها المرئيـــــــــة ويـــــوحد نــــــــــبرة المحتوى.</span><span class="t-d">يبني شخصية العلامة التجارية ويوضح هويتها داخل السوق.</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">البحث والــــــــتطوير</span><span class="t-d">البحث والتطوير</span></span><span class="service-chip__desc"><span class="t-m">يقتنص التــــــــــوجهات ويبــتكر أساليب تــــــــصوير حـــــــــــديثة ويدمج الذكاء الاصطناعي(AI) لمواكبة سوق العمل.</span><span class="t-d">نحلل التجربة ونبتكر حلولاً تعتمد على التقنية والذكاء الاصطناعي.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label">إدارة العملاء</span><span class="service-chip__desc">تضمن الوقوف بإدارة استباقية واستيعاب التسليمات.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قسم المبيعات</span><span class="service-chip__desc">يصنع الصفقات الذكية ويفتح آفاق تجارية جاذبة.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قسم البراندنك</span><span class="service-chip__desc">يبني شخصية العلامة التجارية ويوضح هويتها داخل السوق.</span></div>
+          <div class="service-chip"><span class="service-chip__label">البحث والتطوير</span><span class="service-chip__desc">نحلل التجربة ونبتكر حلولاً تعتمد على التقنية والذكاء الاصطناعي.</span></div>
         </div>
         <div class="services__row">
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســــــــــــــــــم الإدارة</span><span class="t-d">قسم الإدارة</span></span><span class="service-chip__desc"><span class="t-m">يـــــــــــــــقود اســـــــــــتراتيجيات الـــــتشغيل ويـــــــوجه الـــدفة الــــــــمالية ويـــــــــدير الطاقات نحو التوسع والنمو.</span><span class="t-d">يقود استراتيجيات التخطيط، المالية، وتنظيم نمو المؤسسة.</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">قســـــــــــــــــم التقني</span><span class="t-d">قسم التقني</span></span><span class="service-chip__desc"><span class="t-m">يديــــــــــــــر الأنظمة البرمجية ويــــهندس مســارات العمل الرقـــــــــــــمية (Workflows) ويصون المنصات.</span><span class="t-d">يبني الأنظمة البرمجية ويصمم مسارات العمل الرقمية.</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">المـــــــوارد البشرية</span><span class="t-d">الموارد البشرية</span></span><span class="service-chip__desc"><span class="t-m">يستـــقطب الــعقول المبدعة ويــــــنظم شــــــؤون الــــــفريق ويـــــدعم الــــــتطور الــــــمهني المستمر.</span><span class="t-d">يستقطب العقول المبدعة ويصمم بيئة عمل تدفع للتطور المهني.</span></span></div>
-          <div class="service-chip"><span class="service-chip__label"><span class="t-m">العــــلاقات العامة</span><span class="t-d">العلاقات العامة</span></span><span class="service-chip__desc"><span class="t-m">يــــنسق الحـــضور الإعــــلامي للمؤسسة ويـــــــــبني شــــبكة تــــــحالفات خـــارجية قـــــــوية ومستدامة.</span><span class="t-d">يصنع الحضور الإعلامي للمؤسسة ويوثق علاقات خارجية قوية.</span></span></div>
+          <div class="service-chip"><span class="service-chip__label">قسم الإدارة</span><span class="service-chip__desc">يقود استراتيجيات التخطيط، المالية، وتنظيم نمو المؤسسة.</span></div>
+          <div class="service-chip"><span class="service-chip__label">قسم التقني</span><span class="service-chip__desc">يبني الأنظمة البرمجية ويصمم مسارات العمل الرقمية.</span></div>
+          <div class="service-chip"><span class="service-chip__label">الموارد البشرية</span><span class="service-chip__desc">يستقطب العقول المبدعة ويصمم بيئة عمل تدفع للتطور المهني.</span></div>
+          <div class="service-chip"><span class="service-chip__label">العلاقات العامة</span><span class="service-chip__desc">يصنع الحضور الإعلامي للمؤسسة ويوثق علاقات خارجية قوية.</span></div>
         </div>
       </div>
     </section>
@@ -2114,8 +2107,8 @@
     <section class="story section" id="behind" aria-label="الكواليس">
       <div class="story__head story__head--tight">
         <h2 class="heading heading--lg">الكواليس</h2>
-        <p class="subtitle"><span class="t-m">خــلف كـــــل إعلان ناجح... فريق لا يــظهر فــي المشهد</span><span class="t-d">خلف كل إعلان ناجح... فريق لا يظهر في المشهد</span></p>
-        <p class="body-text" dir="rtl"><span class="t-m">فالـــجمهور يتذكر الــمشهد النهائي، لـــكنه لا يـرى ســاعات التخطيط، ولا الاجتماعات، ولا التجارب، ولا اللحظات التي تُـصنع فيها الفكرة قبل أن تــــصل إلى الشاشة. في TEO Vision Agency، نـؤمن أن الإبداع الحقيقي لا يـبدأ أمام الكاميرا، بل خــلفها. حــيث تتحول الأفـــكار إلى خطط، والخطط إلى مشاهد، والمشاهد إلى قـصص تترك أثراً في الذاكرة. فما يـظهـــر للجمهور هو النتيجة، أما الـسحر الحقيقي فيُصنع خلف الكواليس.</span><span class="t-d">فالجمهور يتذكر المشهد النهائي، لكنه لا يرى ساعات التخطيط، ولا الاجتماعات، ولا التجارب، ولا اللحظات التي تُصنع فيها الفكرة قبل أن تصل إلى الشاشة. في TEO Vision Agency، نؤمن أن الإبداع الحقيقي لا يبدأ أمام الكاميرا، بل خلفها. حيث تتحول الأفكار إلى خطط، والخطط إلى مشاهد، والمشاهد إلى قصص تترك أثراً في الذاكرة. فما يظهر للجمهور هو النتيجة، أما السحر الحقيقي فيُصنع خلف الكواليس.</span></p>
+        <p class="subtitle">خلف كل إعلان ناجح... فريق لا يظهر في المشهد</p>
+        <p class="body-text" dir="rtl">فالجمهور يتذكر المشهد النهائي، لكنه لا يرى ساعات التخطيط، ولا الاجتماعات، ولا التجارب، ولا اللحظات التي تُصنع فيها الفكرة قبل أن تصل إلى الشاشة. في TEO Vision Agency، نؤمن أن الإبداع الحقيقي لا يبدأ أمام الكاميرا، بل خلفها. حيث تتحول الأفكار إلى خطط، والخطط إلى مشاهد، والمشاهد إلى قصص تترك أثراً في الذاكرة. فما يظهر للجمهور هو النتيجة، أما السحر الحقيقي فيُصنع خلف الكواليس.</p>
       </div>
 
       <div class="story__media media" style="width:360px;">
@@ -2128,17 +2121,17 @@
       </div>
 
       <div class="story__caption">
-        <p class="subtitle" style="color:var(--color-accent-mid);"><span class="t-m">كل شيء يبدو أبيض وأسود... حتى تـــولد الفكـرة</span><span class="t-d">كل شيء يبدو أبيض وأسود... حتى تولد الفكرة</span></p>
-        <p class="body-text" dir="rtl"><span class="t-m">ففــــــي الكـــــــواليس تبـدأ الرحلة بين التخطيط والإبداع والـتنفيذ، إلى أن تأتي اللـــحظة التي تــضيف فيها الفكرة لونها الخاص للمشهد.</span><span class="t-d">ففي الكواليس تبدأ الرحلة بين التخطيط والإبداع والتنفيذ، إلى أن تأتي اللحظة التي تضيف فيها الفكرة لونها الخاص للمشهد.</span></p>
+        <p class="subtitle" style="color:var(--color-accent-mid);">كل شيء يبدو أبيض وأسود... حتى تولد الفكرة</p>
+        <p class="body-text" dir="rtl">ففي الكواليس تبدأ الرحلة بين التخطيط والإبداع والتنفيذ، إلى أن تأتي اللحظة التي تضيف فيها الفكرة لونها الخاص للمشهد.</p>
       </div>
     </section>
 
     <!-- ========================== ADS ( الإعلانات ) ========================== -->
     <section class="story section" id="ads" aria-label="الإعلانات">
       <div class="story__head story__head--tight">
-        <h2 class="heading heading--lg heading--ads"><span class="t-m">الإعـلانات</span><span class="t-d">الإعلانات</span></h2>
-        <p class="subtitle subtitle--ads"><span class="t-m">رحـلة بطيـئة.. ولكنها تـصنع الأثـــر</span><span class="t-d">رحلة بطيئة.. ولكنها تصنع الأثر</span></p>
-        <p class="body-text" dir="rtl"><span class="t-m">مثل السلحفاة لا يعتمد على السرعة وحدها، بل على الثبات والذكاء في اختيــار الطريــــــق. قد لا تكون الأسرع في البدايــة لكنها تعـرف كـيف تصل إلى هدفها بثقـة وتتجـاوز من يـركض بلا اتــجاه. وهكذا هو الإعلان الذكي؛ لا يـطارد النتائج السريعة، بـل يُبنى على اسـتراتيجية واضـــــحة، ورســالة مــدروسـة وفهـم عـميق للجمهور، يتحرك في الوقت المناسب ويصل إلى المكانالصحيح،ليصنع أثراً يبقى في الذاكرة ويحول الانتباه إلى ولاء والمشاهدات إلى نتائج حقيقية.</span><span class="t-d">مثل السلحفاة لا يعتمد على السرعة وحدها، بل على الثبات والذكاء في اختيار الطريق. قد لا تكون الأسرع في البداية لكنها تعرف كيف تصل إلى هدفها بثقة وتتجاوز من يركض بلا اتجاه. وهكذا هو الإعلان الذكي؛ لا يطارد النتائج السريعة، بل يُبنى على استراتيجية واضحة، ورسالة مدروسة وفهم عميق للجمهور، يتحرك في الوقت المناسب ويصل إلى المكانالصحيح،ليصنع أثراً يبقى في الذاكرة ويحول الانتباه إلى ولاء والمشاهدات إلى نتائج حقيقية.</span></p>
+        <h2 class="heading heading--lg heading--ads">الإعلانات</h2>
+        <p class="subtitle subtitle--ads">رحلة بطيئة.. ولكنها تصنع الأثر</p>
+        <p class="body-text" dir="rtl">مثل السلحفاة لا يعتمد على السرعة وحدها، بل على الثبات والذكاء في اختيار الطريق. قد لا تكون الأسرع في البداية لكنها تعرف كيف تصل إلى هدفها بثقة وتتجاوز من يركض بلا اتجاه. وهكذا هو الإعلان الذكي؛ لا يطارد النتائج السريعة، بل يُبنى على استراتيجية واضحة، ورسالة مدروسة وفهم عميق للجمهور، يتحرك في الوقت المناسب ويصل إلى المكانالصحيح،ليصنع أثراً يبقى في الذاكرة ويحول الانتباه إلى ولاء والمشاهدات إلى نتائج حقيقية.</p>
       </div>
 
       <div class="ads">
@@ -2154,7 +2147,7 @@
       </div>
 
       <div class="story__caption">
-        <p class="body-text" dir="rtl"><span class="t-m">فالإعلانـــــات التي تترسخ في الأذهــــان، لم تصل بضجيج مؤقت، بل بخطوات ثابتة ورسائل ذكية واستراتيجية تـــــعرف مــــن تتحدث وكـــــيف تشع وأيــن تترك أثرها. لهذا نبني إعلاناتنا كما تتحرك السلحفاة بثقة ووعي، وإصرار على الوصول إلى الهدف الصحيح، لا إلى الوجهة الأسرع.</span><span class="t-d">فالإعلانات التي تترسخ في الأذهان، لم تصل بضجيج مؤقت، بل بخطوات ثابتة ورسائل ذكية واستراتيجية تعرف من تتحدث وكيف تشع وأين تترك أثرها. لهذا نبني إعلاناتنا كما تتحرك السلحفاة بثقة ووعي، وإصرار على الوصول إلى الهدف الصحيح، لا إلى الوجهة الأسرع.</span></p>
+        <p class="body-text" dir="rtl">فالإعلانات التي تترسخ في الأذهان، لم تصل بضجيج مؤقت، بل بخطوات ثابتة ورسائل ذكية واستراتيجية تعرف من تتحدث وكيف تشع وأين تترك أثرها. لهذا نبني إعلاناتنا كما تتحرك السلحفاة بثقة ووعي، وإصرار على الوصول إلى الهدف الصحيح، لا إلى الوجهة الأسرع.</p>
       </div>
     </section>
 
@@ -2162,8 +2155,8 @@
     <section class="story section" id="content" aria-label="المحتوى">
       <div class="story__head story__head--tight">
         <h2 class="heading heading--lg">المحتوى</h2>
-        <p class="subtitle"><span class="t-m">بين صفــحة تُقــرأ وفــــكرة تـــولد... تبدأ رحلة المحتوى</span><span class="t-d">بين صفحة تُقرأ وفكرة تولد... تبدأ رحلة المحتوى</span></p>
-        <p class="body-text" dir="rtl"><span class="t-m">فالــمعرفة لا تـــمنحنا الـــمعلومات فقط، بـــل تمنحنا الــقدرة على فـهم الناس، وتـحليل سلوكهم، واكــتشاف ما يــــجذب انتباههم ومـــــا يبقى عالقاً في ذاكرتهم. نحن لا نبني الإعلانات على التخمين، بل على المعرفة والرؤية، لأن كـــل حـــملة ناجحـــة تبدأ بفهــم أعمق للجمهور، وكل محتوى مؤثر يبدأ بفكرة مدروسة تعرف كيف تـصل، ومتى تتــحدث، ولـــماذا تُــــــسمـع. فـــكما تــــمنح الــــــكــتب أصحابها منظوراً أوسع للعالم، تمنـحنا المعرفة القدرة على صــــناعة إعـــلانات نتجاوز المشاهدة، لتصنع تأثيراً حقيقياً.</span><span class="t-d">فالمعرفة لا تمنحنا المعلومات فقط، بل تمنحنا القدرة على فهم الناس، وتحليل سلوكهم، واكتشاف ما يجذب انتباههم وما يبقى عالقاً في ذاكرتهم. نحن لا نبني الإعلانات على التخمين، بل على المعرفة والرؤية، لأن كل حملة ناجحة تبدأ بفهم أعمق للجمهور، وكل محتوى مؤثر يبدأ بفكرة مدروسة تعرف كيف تصل، ومتى تتحدث، ولماذا تُسمع. فكما تمنح الكتب أصحابها منظوراً أوسع للعالم، تمنحنا المعرفة القدرة على صناعة إعلانات نتجاوز المشاهدة، لتصنع تأثيراً حقيقياً.</span></p>
+        <p class="subtitle">بين صفحة تُقرأ وفكرة تولد... تبدأ رحلة المحتوى</p>
+        <p class="body-text" dir="rtl">فالمعرفة لا تمنحنا المعلومات فقط، بل تمنحنا القدرة على فهم الناس، وتحليل سلوكهم، واكتشاف ما يجذب انتباههم وما يبقى عالقاً في ذاكرتهم. نحن لا نبني الإعلانات على التخمين، بل على المعرفة والرؤية، لأن كل حملة ناجحة تبدأ بفهم أعمق للجمهور، وكل محتوى مؤثر يبدأ بفكرة مدروسة تعرف كيف تصل، ومتى تتحدث، ولماذا تُسمع. فكما تمنح الكتب أصحابها منظوراً أوسع للعالم، تمنحنا المعرفة القدرة على صناعة إعلانات نتجاوز المشاهدة، لتصنع تأثيراً حقيقياً.</p>
       </div>
 
       <div class="story__media media story__media--hover" style="width:360px;">
@@ -2192,12 +2185,12 @@
           <span class="call__halo" aria-hidden="true"><svg viewBox="0 0 1000 1000"><use href="#tvSunburst" /></svg></span>
           <h2 class="heading heading--lg">التواصل</h2>
         </div>
-        <p class="subtitle subtitle--muted"><span class="t-m">مكالمة واحــدة... قــــد تـــكون بدايــة كـــــــــــــل شـــــيء</span><span class="t-d">مكالمة واحدة... قد تكون بداية كل شيء</span></p>
+        <p class="subtitle subtitle--muted">مكالمة واحدة... قد تكون بداية كل شيء</p>
         <!-- desktop copy, from the artboard (1029:1814): a two-line quote and a
              button in place of the two paragraphs the phone layout carries -->
         <p class="call__quote" dir="rtl">الشركات التي تملك الانتباه تملك التأثير<br>و الشركات التي تملك التأثير تملك النمو</p>
         <a class="call__cta" href="#contact"><img src="img/icon-arrow-left.svg" alt="" width="24" height="24" /><span>تواصل معنا</span></a>
-        <p class="body-text" dir="rtl"><span class="t-m">مثــل الـــهاتف الــذي صُـمم ليختصر المسافات ويـقرب الأشخاص، فإن التواصل الفعّال لا يقتصر على تبادل الكلمات، بـــــــل على بناء جـسور من الثقة والفهم والتعاون، ففي عالـم الأعمــال لا تبدأ الــنجاحات مــن الــعقود أو الاجــتماعات، بـــل من لــحظة تواصل صـادقة تُفهم فـــيها الاحتياجات وتُبنى فيها العلاقـات، ولـــهذا نؤمــن أن كــــل رسالــــة وكــل مــكالمة وكـــل استفسار يحمل فرصة جديدة للنمو وصناعة قيمة حقيقية.</span><span class="t-d">مثل الهاتف الذي صُمم ليختصر المسافات ويقرب الأشخاص، فإن التواصل الفعّال لا يقتصر على تبادل الكلمات، بل على بناء جسور من الثقة والفهم والتعاون، ففي عالم الأعمال لا تبدأ النجاحات من العقود أو الاجتماعات، بل من لحظة تواصل صادقة تُفهم فيها الاحتياجات وتُبنى فيها العلاقات، ولهذا نؤمن أن كل رسالة وكل مكالمة وكل استفسار يحمل فرصة جديدة للنمو وصناعة قيمة حقيقية.</span></p>
+        <p class="body-text" dir="rtl">مثل الهاتف الذي صُمم ليختصر المسافات ويقرب الأشخاص، فإن التواصل الفعّال لا يقتصر على تبادل الكلمات، بل على بناء جسور من الثقة والفهم والتعاون، ففي عالم الأعمال لا تبدأ النجاحات من العقود أو الاجتماعات، بل من لحظة تواصل صادقة تُفهم فيها الاحتياجات وتُبنى فيها العلاقات، ولهذا نؤمن أن كل رسالة وكل مكالمة وكل استفسار يحمل فرصة جديدة للنمو وصناعة قيمة حقيقية.</p>
       </div>
 
       <div class="call__media media media--box media--phone">
@@ -2209,7 +2202,7 @@
       </div>
 
       <div class="story__caption">
-        <p class="body-text" dir="rtl"><span class="t-m">فكــل مـــشروع ناجح يبدأ بحـــــوار، وكــــل شــراكة قوية تبدأ بفهم، وكل فكرة عظيمة تبدأ بتواصل واضــح. لـــذلك نـــحرص على أن تكـون قنوات التواصـــل معنا سريعــة، مـــرنة، وفعالة لنكون أقرب إلى احتياجاتك في كل خطوة من رحلتك.</span><span class="t-d">فكل مشروع ناجح يبدأ بحوار، وكل شراكة قوية تبدأ بفهم، وكل فكرة عظيمة تبدأ بتواصل واضح. لذلك نحرص على أن تكون قنوات التواصل معنا سريعة، مرنة، وفعالة لنكون أقرب إلى احتياجاتك في كل خطوة من رحلتك.</span></p>
+        <p class="body-text" dir="rtl">فكل مشروع ناجح يبدأ بحوار، وكل شراكة قوية تبدأ بفهم، وكل فكرة عظيمة تبدأ بتواصل واضح. لذلك نحرص على أن تكون قنوات التواصل معنا سريعة، مرنة، وفعالة لنكون أقرب إلى احتياجاتك في كل خطوة من رحلتك.</p>
       </div>
 
       <div class="call__divider" aria-hidden="true">
@@ -2220,9 +2213,9 @@
     <!-- ========================== SAVE IRAQ / CASE STUDY ========================== -->
     <section class="story section" id="works" aria-label="موقعنا">
       <div class="story__head story__head--tight">
-        <h2 class="heading heading--xl"><span class="t-m">مـــوقعـنـــــــا</span><span class="t-d">موقعنا</span></h2>
-        <p class="subtitle"><span class="t-m">لكل قصة نجاح نقطــة انطـــلاق... وهـــذه هي نقطتنــــا</span><span class="t-d">لكل قصة نجاح نقطة انطلاق... وهذه هي نقطتنا</span></p>
-        <p class="body-text" dir="rtl"><span class="t-m">من قلب المنصور، أحد أكثر مناطق بغداد حيويـة وحركة، نعمــل على تحويـل الأفكار إلى مشاريع، والمشاريع إلى قصص نـجاح تروى. وجودنا هنا لا يمثل موقعاً جغرافيـاً فحسب، بل يعكس قـربنا من عملائنا، وسهولة الوصول إلينا، وحرصنا على أن نكون جزءاً مـن المشهد الإبـداعـي المتجدد في العاصمة. من بغداد نبدأ، وإلى كل مكان يصل أثر أعمالنا.</span><span class="t-d">من قلب المنصور، أحد أكثر مناطق بغداد حيوية وحركة، نعمل على تحويل الأفكار إلى مشاريع، والمشاريع إلى قصص نجاح تروى. وجودنا هنا لا يمثل موقعاً جغرافياً فحسب، بل يعكس قربنا من عملائنا، وسهولة الوصول إلينا، وحرصنا على أن نكون جزءاً من المشهد الإبداعي المتجدد في العاصمة. من بغداد نبدأ، وإلى كل مكان يصل أثر أعمالنا.</span></p>
+        <h2 class="heading heading--xl">موقعنا</h2>
+        <p class="subtitle">لكل قصة نجاح نقطة انطلاق... وهذه هي نقطتنا</p>
+        <p class="body-text" dir="rtl">من قلب المنصور، أحد أكثر مناطق بغداد حيوية وحركة، نعمل على تحويل الأفكار إلى مشاريع، والمشاريع إلى قصص نجاح تروى. وجودنا هنا لا يمثل موقعاً جغرافياً فحسب، بل يعكس قربنا من عملائنا، وسهولة الوصول إلينا، وحرصنا على أن نكون جزءاً من المشهد الإبداعي المتجدد في العاصمة. من بغداد نبدأ، وإلى كل مكان يصل أثر أعمالنا.</p>
       </div>
 
       <div class="story__media media media--box media--monument" style="width:362px;">
@@ -2250,7 +2243,7 @@
         </div>
 
         <div class="field field--full">
-          <label class="field__label" for="message"><span class="t-m">اكتب الرسالة</span><span class="t-d">موضوع الرسالة</span></label>
+          <label class="field__label" for="message">موضوع الرسالة</label>
           <textarea class="field__textarea" id="message" dir="rtl" placeholder="الرسالة"></textarea>
         </div>
 
@@ -2537,6 +2530,13 @@
     var t;
     window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(build, 200); });
   })();
+</script>
+<script src="js/kashida.js"></script>
+<script>
+  /* Kashida is typography, not content: the markup above stays clean and
+     this stretches the prose at render. Everything about it — including
+     the off switch — lives in js/kashida.js. */
+  document.addEventListener('DOMContentLoaded', function () { Kashida.enhance(); });
 </script>
 </body>
 </html>
