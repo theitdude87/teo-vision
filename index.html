@@ -1192,7 +1192,18 @@
       --font-decorative: "The Year of Handicrafts", "Ping AR + LT", sans-serif;
     }
 
-    .page { width: min(1280px, 100% - 64px); padding-bottom: var(--sp-8); overflow-x: visible; }
+    /* The page fills the screen instead of sitting in a 1280 column with the
+       body colour showing down both sides. Nothing inside grows with it:
+       copy keeps its 760 measure, pictures keep their fixed height, so only
+       the breathing room changes. */
+    .page {
+      width: 100%;
+      max-width: none;
+      padding-inline: clamp(24px, 3vw, 72px);
+      padding-bottom: var(--sp-8);
+      overflow-x: visible;
+      box-sizing: border-box;
+    }
     html { overflow-x: clip; scroll-padding-top: 116px; }
 
     /* desktop wording where it differs from the phone's */
@@ -1323,6 +1334,10 @@
 
     /* ---------- hero ---------- */
     .hero {
+      /* the page is full width, but this trio stays a composition: capped
+         and centred so the cards keep flanking the television */
+      max-width: 1280px;
+      margin-inline: auto;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 420px minmax(0, 1fr);
       column-gap: var(--sp-4);
@@ -1405,6 +1420,8 @@
     .services__title { margin-bottom: var(--sp-3); text-align: right; width: 100%; }
     .services__grid {
       width: 100%;
+      max-width: 1280px;
+      margin-inline: auto;
       display: grid;
       grid-template-columns: minmax(0, 1fr) 300px;
       column-gap: var(--sp-6);
@@ -1430,6 +1447,8 @@
 
     /* ---------- التواصل ---------- */
     .call {
+      max-width: 1280px;
+      margin-inline: auto;
       display: grid;
       grid-template-columns: minmax(0, 560px) 380px;
       justify-content: space-between;
