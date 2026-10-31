@@ -1605,7 +1605,9 @@
     #works .story__media { max-width: 100%; }
     .story__media > img,
     .ads__stage > img {
-      max-height: clamp(420px, 33vw, 580px);
+      /* 580 was too dominant — and the clapperboard's arm is cut off in
+         the source artwork, which a big size puts on display. */
+      max-height: clamp(420px, 24vw, 470px);
       width: auto;
       max-width: 100%;
       height: auto;
