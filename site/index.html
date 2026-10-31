@@ -182,8 +182,9 @@
     --color-vision-panel: #e8edf6;
     --color-text-light: #171a1f;
     --color-text-lighter: #0f1216;
-    --color-muted: #5c6470;
-    --color-muted-60: rgba(92, 100, 112, 0.85);
+    /* the small copy was too pale to read on the light page */
+    --color-muted: #434a56;
+    --color-muted-60: rgba(55, 62, 73, 0.96);
     --color-input-bg: rgba(30, 106, 247, 0.07);
     --color-input-border: rgba(30, 62, 121, 0.28);
     --color-divider: rgba(30, 62, 121, 0.22);
@@ -332,6 +333,9 @@
     width: var(--content-width);
     margin: 0 auto;
   }
+
+  .heading, .subtitle { text-wrap: balance; }
+  .body-text, .vm-card__text, .service-chip__desc { text-wrap: pretty; }
 
   .heading {
     font-family: var(--font-display);
@@ -1108,6 +1112,37 @@
       text-align: right;
       padding: 8px 8px 8px 5px;
     }
+    /* ---- Client notes, 2026-10-31: the same treatment on the phone ----
+       Pictures were running the full width and reading as cropped; they are
+       now cut to one height like the laptop's, and each section gets a
+       screen of its own. */
+    .story__media,
+    .story__media[style],
+    .ads {
+      width: fit-content !important;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .story__media > img,
+    .ads__stage > img,
+    .ads img {
+      max-height: 240px;
+      width: auto;
+      max-width: calc(100% - 32px);   /* keep a gutter; nothing touches the edge */
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .story, .contact {
+      min-height: 100svh;
+      justify-content: center;
+      box-sizing: border-box;
+      padding-block: 48px;
+    }
+    .marquee__logo { width: 96px; height: 32px; max-height: none; object-fit: contain; }
+    .marquee__track, .marquee__set { --mq-gap: 24px; }
+
     .hero__title-wrap { width: 100%; max-width: 322px; }
     .hero__underline { width: 100%; }
     .hero__underline img,
@@ -1119,7 +1154,9 @@
   /* Where the desktop artboard words something differently from the
      phone (same text, different kashida), both versions ship and the
      breakpoint picks one. Phone first: .t-d is hidden until >=900. */
-  .t-d { display: none; }
+  /* One set of strings for both: the reviewed, unstretched wording. */
+  .t-m { display: none; }
+  .t-d { display: inline; }
   .socials--full { display: none; }
   .call__halo, .call__quote, .call__cta, .call__divider { display: none; }
 
@@ -1525,6 +1562,39 @@
     .rings-armed .call__media .ring > svg { animation-play-state: paused; }
     .rings-armed .call:hover .call__media .ring { translate: 0 0; opacity: 1; }
     .rings-armed .call:hover .call__media .ring > svg { animation-play-state: running; }
+
+    /* ---- Client notes, 2026-10-31 --------------------------------- */
+    /* "كل صفحة تاخذ حقها" — a section gets a screen of its own and sits in
+       the middle of it, instead of two sections sharing one screenful. */
+    .story, .contact {
+      min-height: 100vh;
+      justify-content: center;
+      box-sizing: border-box;
+      padding-block: var(--sp-8);
+    }
+    .hero { min-height: 100vh; align-content: center; padding-block: var(--sp-6); }
+
+    /* "الصور تكون قياساتها موحدة" — every photograph is cut to the same
+       height, so they read as one set however wide each one is, and the box
+       hugs the picture so the ring stays registered to it. */
+    .story__media,
+    .story__media[style] {
+      width: fit-content !important;
+      max-width: 100%;
+      margin: var(--sp-4) auto 0;
+    }
+    #works .story__media { max-width: 100%; }
+    .story__media > img,
+    .ads__stage > img {
+      max-height: 420px;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .ads { width: fit-content; max-width: 100%; }
+    .ads__banner { max-width: 100%; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1551,9 +1621,11 @@
   /* The wordmark is white artwork. In light mode its lightness is
      inverted while the hue is kept, so the type goes black and the
      sunburst "o" stays blue. */
-  .nav__logo img,
-  .contact__logo img,
-  .hero__strip-logo { filter: var(--brand-filter); }
+  /* Light mode loads a blue cut of the wordmark (img/logo-light.webp), so
+     no filter is needed there; dark keeps the white artwork as drawn. */
+  :root:not([data-theme="light"]) .nav__logo img,
+  :root:not([data-theme="light"]) .contact__logo img,
+  :root:not([data-theme="light"]) .hero__strip-logo { filter: var(--brand-filter); }
 
   /* The client logos are white artwork. Rather than filter them — a plain
      invert turns the two red marks cyan — img/clients-light/ holds a
@@ -1817,7 +1889,7 @@
         </div>
 
         <div class="nav__logo">
-          <img src="img/logo.webp" alt="Teo Vision" />
+          <img src="img/logo.webp" data-light-src="img/logo-light.webp" alt="Teo Vision" />
         </div>
 
         <!-- Collapsible menu (<=1024) -->
@@ -1880,7 +1952,7 @@
       </div>
 
       <div class="hero__strip">
-        <img class="hero__strip-logo" src="img/logo.webp" alt="Teo Vision" />
+        <img class="hero__strip-logo" src="img/logo.webp" data-light-src="img/logo-light.webp" alt="Teo Vision" />
         <span class="hero__strip-mid">Production House &amp; Marketing Agency</span>
         <span class="hero__strip-end">Where vision becomes reality</span>
       </div>
@@ -2175,7 +2247,7 @@
 
       <div class="contact__brand">
         <div class="contact__logo">
-          <img src="img/logo.webp" alt="Teo Vision" />
+          <img src="img/logo.webp" data-light-src="img/logo-light.webp" alt="Teo Vision" />
         </div>
         <p class="contact__tagline">Production House &amp; Marketing Agency</p>
       </div>
